@@ -84,7 +84,7 @@ class ThuongHieuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(RequestThuongHieu $request, $id)
+    public function update(Request $request, $id)
     {
         $th = ThuongHieu ::find($id);
         $fileimg = $request->file('img_thuonghieu'); // tạo biến lấy dữ liệu từ input
@@ -92,7 +92,7 @@ class ThuongHieuController extends Controller
             $fileimg = $request->file('img_thuonghieu'); // tạo biến lấy dữ liệu từ input
             $filename = $fileimg->getClientOriginalName(); // lấy tên theo tên gốc của file
             $pathimg = $fileimg->move(public_path().'/hinhthuonghieu/', $filename); //chỗ chứa file
-            $th->icon_loaisp = $filename;
+            $th->img_thuonghieu = $filename;
             $th->slug_thuonghieu =\Str::slug($request->name_thuonghieu);
             $th->name_thuonghieu = $request->get('name_thuonghieu');
             $th->sdt_thuonghieu = $request->get('sdt_thuonghieu');

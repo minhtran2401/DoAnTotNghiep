@@ -1,5 +1,5 @@
 @extends('admin.layoutadmin')
-@section('pagetitle', "SỬA THUƠNG HIỆU")
+@section('pagetitle', "SỬA THƯƠNG HIỆU")
 @section('main')
 <div class="main-content" style="min-height: 659px;">
     <section class="section">
@@ -66,7 +66,7 @@
                       </div>
 
                       <div class="col-md-10">
-                        <input type="file" class="form-control" name="icon_loaisp">
+                        <input type="file" class="form-control" name="img_thuonghieu">
                       </div>
                     </div>
 
