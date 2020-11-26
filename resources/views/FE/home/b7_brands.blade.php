@@ -6,8 +6,8 @@
             <li>
                 <div class="biolife-brd-container">
                     <a href="#" class="link">
-                    <figure><img style="-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-                        filter: grayscale(100%);" src="{{asset('hinhthuonghieu')}}/{{$br->img_thuonghieu}}" width="214" height="163" alt=""></figure>
+                    <figure><img style="-webkit-filter: grayscale(50%); /* Safari 6.0 - 9.0 */
+                        filter: grayscale(50%);" src="{{asset('hinhthuonghieu')}}/{{$br->img_thuonghieu}}" width="214" height="163" alt=""></figure>
                     </a>
                 </div>
             </li>

@@ -139,7 +139,7 @@ class SanPhamController extends Controller
      */
     public function edit($id)
     {
-        $data['kho'] = DB::table("khohang")->select("sku", "khohang_name")->where('khohang_trangthai',0)->get();
+        $data['kho'] = DB::table("khohang")->select("sku", "khohang_name")->where('khohang_trangthai',1)->get();
         $data['images'] =DB::table('imgchitiet')->where('id_sanpham',$id)->get();
         $data['loaisp'] = DB::table("loaisp")->select("id_loaisp", "name_loaisp")->get();
         $data['nhomsp'] = DB::table("nhomsp")->select("id_nhomsp", "name_nhomsp")->get();
