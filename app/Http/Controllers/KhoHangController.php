@@ -5,6 +5,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use App\KhoHang;
 use App\DonVi;
 use Illuminate\Http\Request;
+use App\Http\Requests\rqKhoHang;
 use Carbon\Carbon;
 use DB;
 use App\ChiTietHD;
@@ -46,7 +47,7 @@ class KhoHangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(rqKhoHang $request)
     
     { 
         
@@ -97,7 +98,7 @@ class KhoHangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(rqKhoHang $request, $id)
     {
         
         $lh = KhoHang ::find($id);

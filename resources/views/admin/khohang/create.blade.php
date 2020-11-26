@@ -34,31 +34,31 @@
                       <div class="form-group col-md-6">
                           <label for="khohang_name">Tên hàng</label>
                           <input type="text" class="form-control" placeholder="Tên hàng" name="khohang_name" >
-                          {{-- @foreach($errors->get('snslink') as $error)
+                          @foreach($errors->get('khohang_name') as $error)
                               <span class="badge badge-danger">{{ $error }}</span>
-                            @endforeach --}}
+                            @endforeach
                       </div>
                       <div class="form-group col-md-6">
                           <label for="khohang_ngaynhap">Ngày nhập</label>
                           <input type="date" class="form-control" placeholder="Ngày nhập" name="khohang_ngaynhap" >
-                          {{-- @foreach($errors->get('snslink') as $error)
+                          @foreach($errors->get('khohang_ngaynhap') as $error)
                               <span class="badge badge-danger">{{ $error }}</span>
-                            @endforeach --}}
+                            @endforeach
                       </div>
                       <div class="form-group col-md-6">
                           <label for="khohang_hsd">Hạn sử dụng</label>
                           <input type="date" class="form-control" placeholder="Hạn sử dụng" name="khohang_hsd" >
-                          {{-- @foreach($errors->get('snslink') as $error)
+                          @foreach($errors->get('khohang_hsd') as $error)
                               <span class="badge badge-danger">{{ $error }}</span>
-                            @endforeach --}}
+                            @endforeach
                       </div>
                       <div class="row form-group col-md-6">
                         <div class=" form-group col-md-6">
                         <label for="khohang_soluong">Số Lượng Nhập</label>
                         <input type="text" class="form-control" placeholder="Số lượng nhập" name="khohang_soluong" >
-                        {{-- @foreach($errors->get('snslink') as $error)
+                        @foreach($errors->get('khohang_soluong') as $error)
                             <span class="badge badge-danger">{{ $error }}</span>
-                          @endforeach --}}
+                          @endforeach
                         </div>
                         <div class="form-group col-md-6">
                           <label for="khohang_donvi">Đơn vị tính</label>
