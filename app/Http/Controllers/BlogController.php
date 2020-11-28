@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Blog;
 use DB;
 use Illuminate\Http\Request;
+use App\ThongBao;
+use Spatie\Activitylog\Models\Activity;
 use App\Http\Requests\rqBlog;
 
 class BlogController extends Controller
@@ -55,6 +57,7 @@ class BlogController extends Controller
             'noibat' => $request->get('noibat'),
         ]);
         $lt->save();
+        
         toast('Đăng Bài Thành Công!','success');
         return redirect ()->route('blog.index');
     }
@@ -90,7 +93,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(rqBlog $request, $id)
+    public function update(Request $request, $id)
     {
         $lt = Blog ::find($id);
         $fileimg = $request->file('hinh_blog'); // tạo biến lấy dữ liệu từ input

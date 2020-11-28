@@ -4,5 +4,8 @@
     "Please click the button below to verify your email address.": "Kích vào nút bên dưới để xác thực email của bạn",
     "If you did not create an account, no further action is required.": "Nếu bạn không đăng kí, hãy bỏ qua email này.",
     "Regards": "Trân trọng",
-    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:actionURL](:actionURL)": "\":actionText\". Nếu bạn gặp sự cố khi nhấp vào nút Xác minh, hãy sao chép và dán URL bên dưới vào trình duyệt web của bạn: [:actionURL](:actionURL)"
+    "If you’re having trouble clicking the \":actionText\" button, copy and paste the URL below\ninto your web browser: [:actionURL](:actionURL)": "\":actionText\". Nếu bạn gặp sự cố khi nhấp vào nút Xác minh, hãy sao chép và dán URL bên dưới vào trình duyệt web của bạn: [:actionURL](:actionURL)",
+    "deleted" : "đã xóa",
+    "created" : "đã thêm ",
+    "updated ": "đã sửa"
   }

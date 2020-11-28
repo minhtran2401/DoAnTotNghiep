@@ -4,41 +4,14 @@
 <div class="main-content">
     <section class="section">
       <div class="section-body">
-        <div class="row">
-          <div class="col-12">
-            <!------------------->
-            @if(session()->get('success'))
-            <div class="alert alert-info alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h4><i class="icon fa fa-info"></i> Thông báo!</h4>
-              {{ session()->get('success') }}
-            </div>
-            @endif
-            @if(session()->get('successx'))
-            <div class="alert alert-warning alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h4><i class="icon fa fa-warning"></i> Thông báo!</h4>
-              {{ session()->get('successx') }}
-            </div>
-            @endif
-            @if(session()->get('status'))
-            <div class="alert alert-danger alert-dismissible">
-              <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-              <h4><i class="icon fa fa-ban"></i> Thông báo!</h4>
-              {{ session()->get('status') }}
-            </div>
-            @endif
-            <!------------------->
-          </div>
-        </div>
+     
 
         <div class="row">
           <div class="col-12">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb bg-primary text-white-all">
-                <li class="breadcrumb-item"><a href="#"><i class="fas fa-tachometer-alt"></i> Home</a></li>
-                <li class="breadcrumb-item"><a href="#"><i class="far fa-file"></i> Library</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-list"></i> Data</li>
+              <li class="breadcrumb-item"><a href="{{route('index')}}"><i class="fas fa-tachometer-alt"></i> Trang Chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><i class="fas fa-list"></i> Hoạt động</li>
               </ol>
             </nav>
             <div class="card">
@@ -60,14 +33,9 @@
                           #
                         </th>
                         <th>Tên</th>
-                        <th>Trạng Thái</th>
-                        <th>ID User</th>
-                        <th>Model</th>
-                        <th>ID</th>
-                        <th>Cấp</th>
-                        <th>Trạng Thái</th>
-                        {{-- <th>Created_at</th> --}}
-                        <th>Updated_at</th>
+                        <th>Trạng Thái</th>      
+                        <th>Chi tiết</th>
+                        <th>Thời gian</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -77,38 +45,36 @@
                             {{ $row->id}}
                         </td>
                         <td>
-                            <div>{{$row->log_name}}</div>
+                           
+                            @php
+                            $id_user = $row->causer_id;
+                            $name = App\Users::find($id_user);
+                            echo $name->name;
+                          @endphp
+                        
                         </td>
                         <td>
                             <div>{{$row->description}}</div>
                         </td>
+                        
+                     
                         <td>
-                            {{-- <div>
-                            @php
-                            $id =$row->subject_id;
-                            $idm = App\Users::find($id);
-                            echo $idm->name;
+                          @php
+                            
+                            $string = $row->properties;
+                           $area = json_decode($string, true);
+                          //  dd($area);
+
+                            foreach($area['attributes'] as $i => $v)
+                            {
+                             
+                                echo $v . '</br>';
+                            }
                             @endphp
-                            </div> --}}
-                            {{$row->subject_id}}</div>
                         </td>
+                        
                         <td>
-                            <div>{{$row->subject_type}}</div>
-                        </td>
-                        <td>
-                            <div>{{$row->causer_id}}</div>
-                        </td>
-                        <td>
-                            <div>{{$row->causer_type}}</div>
-                        </td>
-                        <td>
-                            <div>{{$row->properties}}</div>
-                        </td>
-                         {{-- <td>
-                            <div>{{$row->created_at }}</div>
-                        </td> --}}
-                        <td>
-                            <div>{{$row->updated_at }}</div>
+                          {{date('d-m-Y H:i:s', strtotime($row->updated_at))}}
                         </td>
 
 

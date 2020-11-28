@@ -11,7 +11,7 @@
                 <a href="#" class="qty-btn btn-up"><i class="fa fa-caret-up" aria-hidden="true"></i></a>
                 <a href="#" class="qty-btn btn-down"><i class="fa fa-caret-down" aria-hidden="true"></i></a>
         </div>
-    <span>{{$sp->name_donvi}}</span>
+    
     </div>
     <div class="buttons">
         <a href="javascript:0"  onclick="AddCartDetail()" class="btn add-to-cart-btn">Thêm Vào Giỏ</a>

@@ -43,6 +43,6 @@ class Users extends Model
 
     public function getDescriptionForEvent(string $eventName): string
     {
-        return "Have {$eventName} user";
+        return "Đã {$eventName} người dùng";
     }
 }

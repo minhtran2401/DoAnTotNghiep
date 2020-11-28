@@ -28,8 +28,8 @@ class rqKhoHang extends FormRequest
             'khohang_soluong'=>'required',
             'khohang_donvi'=>'required',
             'khohang_ngaynhap'=>'required',
-            'khohang_hsd'=>'required',
-            'khohang_trangthai'=>'required',
+            // 'khohang_hsd'=>'required',
+            // 'khohang_trangthai'=>'required',
         ];
     }
 

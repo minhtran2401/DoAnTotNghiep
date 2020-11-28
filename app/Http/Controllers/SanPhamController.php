@@ -169,6 +169,7 @@ class SanPhamController extends Controller
             $sp->name_sp = $request->get('name_sp');
             $sp->id_nhomsp = $request->get('id_nhomsp');
             $sp->id_loaisp = $request->get('id_loaisp');
+            $sp->id_donvitinh = $request->get('id_donvitinh');
             $sp->id_thuonghieu = $request->get('id_thuonghieu');
             $sp->price_sp = $request->get('price_sp');
             $sp->old_price_sp = $request->get('old_price_sp');
@@ -184,6 +185,7 @@ class SanPhamController extends Controller
         else{
 
             $sp->slug_sp =\Str::slug($request->name_sp);
+            $sp->id_donvitinh = $request->get('id_donvitinh');
             $sp->name_sp = $request->get('name_sp');
             $sp->id_nhomsp = $request->get('id_nhomsp');
             $sp->id_loaisp = $request->get('id_loaisp');

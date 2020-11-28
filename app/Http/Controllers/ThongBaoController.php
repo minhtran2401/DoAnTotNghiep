@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\ThongBao;
 use App\Users;
+use DB;
 use Illuminate\Http\Request;
 use Spatie\Activitylog\Models\Activity;
 
@@ -15,11 +16,10 @@ class ThongBaoController extends Controller
      */
     public function index()
     {
-
-        $tb = Activity::all();
+        $tb = Activity::orderBy('created_at','desc')->get();
         $data = array();
-        $us = Users::all();
-        return view('admin.thongbao.index', compact('tb','us'));
+      
+        return view('admin.thongbao.index', compact('tb'));
     }
 
     /**

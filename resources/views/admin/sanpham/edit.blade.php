@@ -110,11 +110,11 @@
                         <div class="form-group col-md-6">
                        <label for="id_donvitinh">Đơn vị tính</label>
                           <select  name="id_donvitinh" class="form-control">
-                                @foreach ($dvt as $dvt)
-                                @if($row->id_donvitinh == $dvt->id_donvitinh )
-                                <option value='{{$dvt->id_donvitinh}}'selected>{{$dvt->name_donvi}}</option>  
+                                @foreach ($dvt as $dvts)
+                                @if($row->id_donvitinh == $dvts->id_donvitinh )
+                                <option value='{{$row->id_donvitinh}}'selected>{{$dvts->name_donvi}}</option>  
                                 @else
-                                <option value='{{$dvt->id_donvitinh}}' >{{$dvt->name_donvi}}</option>  
+                                <option value='{{$dvts->id_donvitinh}}' >{{$dvts->name_donvi}}</option>  
                                 @endif
                                 @endforeach 
                         </select>

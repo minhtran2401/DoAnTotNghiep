@@ -36,7 +36,7 @@
         specimen book. It has survived not only five centuries, but also the leap into electronic typesetting<p>
         @endif
         <div class="price">
-        <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sp->price_sp)}} đ</span></ins>
+        <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sp->price_sp)}} đ / {{$sp->name_donvi}}</span></ins>
         @if($sp->old_price_sp)
         <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sp->old_price_sp)}} đ</span></del>
         @else
