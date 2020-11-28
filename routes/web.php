@@ -38,10 +38,10 @@ Route::post('/update-info/{id}', [App\Http\Controllers\PageController::class, 'u
 });
 
 
-// Route::get('/thanh-toan', [App\Http\Controllers\PageController::class, 'checkout'])->name('checkout')->middleware('verified'); 
+// Route::get('/thanh-toan', [App\Http\Controllers\PageController::class, 'checkout'])->name('checkout')->middleware('verified');
 Route::get('/thong-tin-ca-nhan', [App\Http\Controllers\PageController::class, 'canhan'])->name('canhan');
 Route::get('/thanh-toan', [App\Http\Controllers\PageController::class, 'checkout'])->name('checkout');
-Route::post('/thanhtoan', [App\Http\Controllers\CartController::class, 'thanhtoan'])->name('thanhtoan');  
+Route::post('/thanhtoan', [App\Http\Controllers\CartController::class, 'thanhtoan'])->name('thanhtoan');
 
 
 
@@ -99,7 +99,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 //dashboard admin , tất cả các route admin đều nằm trong này
 Route::group(['middleware' => ['auth','CheckAdmin']], function () {
-   
+
     Route::get('/admin', [App\Http\Controllers\AdminController::class, 'admindashboard'])->name('admindashboard');
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'admindashboard'])->name('admindashboard');
     Route::get('/email-kh', [App\Http\Controllers\AdminController::class, 'emailkh'])->name('emailkh');
@@ -119,14 +119,14 @@ Route::group(['middleware' => ['auth','CheckAdmin']], function () {
     Route::resource('don-hang', App\Http\Controllers\DonHangController::class);
     Route::resource('users', App\Http\Controllers\UsersController::class);
     Route::resource('nhap-kho-hang', App\Http\Controllers\KhoHangController::class);
-
+    Route::resource('thongbao', App\Http\Controllers\ThongBaoController::class);
 
 
     //lấy loại sp theo nhóm
     Route::get('/get-type-pro/{id_nhomsp}', [App\Http\Controllers\SanPhamController::class, 'get_type_pro'])->name('get_type_pro');
 
 
-    //thay đổi ẩn hiện 
+    //thay đổi ẩn hiện
     Route::post('change-status-group-product','App\Http\Controllers\NhomSanPhamController@changeStatus')->name('changeStatus.group-product');
     Route::post('change-status-type-product','App\Http\Controllers\LoaiSanPhamController@changeStatus')->name('changeStatus.type-product');
     Route::post('change-status-product','App\Http\Controllers\SanPhamController@changeStatus')->name('changeStatus.product');

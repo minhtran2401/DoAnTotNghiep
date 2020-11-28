@@ -42,7 +42,7 @@
               <li><a class="nav-link {{ request()->is('thuong-hieu','thuong-hieu/*/edit','thuong-hieu/create') ? 'activeli' : '' }}" href="{{route('thuong-hieu.index')}}"><i
                 data-feather="square"></i> Nhà Cung Cấp </a>
               </li>
-              
+
             </ul>
           </li>
           <li class="dropdown {{ request()->is('don-hang','don-hang/*/edit') ? 'active' : '' }}">
@@ -59,10 +59,12 @@
             <a href="" class="menu-toggle nav-link has-dropdown"><i
                 data-feather="users"></i><span>NGƯỜI DÙNG</span></a>
             <ul class="dropdown-menu ">
-              <li><a class="nav-link" href=""><i
+              <li><a class="nav-link {{ request()->is('users','users/*/edit','users/create') ? 'activeli' : '' }}" href="{{route('users.index')}}"><i
                 data-feather="user-check"></i> Quản Trị Viên </a></li>
             <li><a class="nav-link" href=""><i
               data-feather="user"></i> Khách Hàng </a></li>
+            <li><a class="nav-link{{ request()->is('thongbao','thongbao/*/edit','thongbao/create') ? 'activeli' : '' }}" href="{{route('thongbao.index')}}"><i
+              data-feather="user"></i> Thông Báo </a></li>
             </ul>
           </li>
 
@@ -77,7 +79,7 @@
               data-feather="edit"></i> Blog </a></li>
             </ul>
           </li>
-          
+
         <li class="dropdown {{ request()->is($link3) ? 'active' : '' }}">
             <a href="" class="menu-toggle nav-link has-dropdown"><i
                 data-feather="layout"></i><span>QUẢN LÍ SITE</span></a>
@@ -90,7 +92,7 @@
               </li>
             </ul>
           </li>
-          
+
 
 
           <li class="dropdown {{ request()->is('tuyendung','tuyendung/*/edit','tuyendung/create') ? 'active' : '' }}">
@@ -129,7 +131,7 @@
           <li class=" {{ request()->is('email-kh') ? 'active' : '' }}">
           <a href="{{route('emailkh')}}" class=" nav-link"><i
                 data-feather="mail"></i><span> EMAIL KH</span></a>
-          
+
           </li>
 
           <li class="  {{ request()->is('danhgia','danhgia/*/edit', 'danhgia/create') ? 'active' : '' }}">

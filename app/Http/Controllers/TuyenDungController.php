@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\TuyenDung;
 use Illuminate\Http\Request;
 use App\Http\Requests\rqTuyenDung;
+
 class TuyenDungController extends Controller
 {
     /**
@@ -13,6 +14,7 @@ class TuyenDungController extends Controller
      */
     public function index()
     {
+
         $ds = TuyenDung::all();
         return view('admin.tuyendung.index', compact('ds'));
     }
@@ -39,7 +41,7 @@ class TuyenDungController extends Controller
         $tuyendung->name_tuyendung = $request->name_tuyendung;
         $tuyendung->noidung_tuyendung = $request->noidung_tuyendung;
         $tuyendung->Anhien = $request->Anhien;
-      
+
         $tuyendung->save();
         toast('Đăng Tin Tuyển Dụng Thành Công!','success');
         return redirect()->route('tuyendung.index');
@@ -108,7 +110,7 @@ class TuyenDungController extends Controller
             if(!$request->id){
                 return "error";
             }
-    
+
             // hien 1 _____ an 0
             //lấy nhóm sản phảm dựa theo id và update lai trạng thái
             \App\TuyenDung::where('id_tuyendung',$request->id)->update(['Anhien'=>$request->status]);

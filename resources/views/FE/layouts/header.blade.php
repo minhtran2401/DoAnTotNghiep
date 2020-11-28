@@ -51,8 +51,8 @@
         </div>
     </div>
     <div class="header-bottom hidden-sm hidden-xs">
-      
+
     @include('FE.layouts.sidebar')
-      
+
     </div>
 </header>

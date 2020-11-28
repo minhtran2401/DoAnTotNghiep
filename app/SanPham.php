@@ -19,7 +19,7 @@ class SanPham extends Model {
         'id_nhomsp',
         'id_loaisp',
         'name_sp',
-        'motadai_sp',   
+        'motadai_sp',
         'motangan_sp',
         'img_sp',
         'price_sp',
@@ -32,6 +32,7 @@ class SanPham extends Model {
         'time_discount',
         'sku'
     ];
+
     public function ktsp() {
         return $this->belongsToMany('App\LoaiSanPham','id_loaisp','id_loaisp');
     }
@@ -43,5 +44,5 @@ class SanPham extends Model {
     {
         return $this->hasOne('App\KhoHang','sku','sku');
     }
-    
+
 }

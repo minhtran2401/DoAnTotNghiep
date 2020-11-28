@@ -165,6 +165,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
         App\Providers\AgentServiceProvider::class,
+        Spatie\Activitylog\ActivitylogServiceProvider::class,
 
 
         /*

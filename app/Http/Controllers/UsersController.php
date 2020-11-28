@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 use App\Users;
 use Hash;
 use Illuminate\Http\Request;
-
 class UsersController extends Controller
 {
     /**
@@ -110,7 +109,7 @@ class UsersController extends Controller
             $us->idgroup = $request->get('idgroup');
             $us->active = $request->get('active');
         }
-       
+
           $us->save();
           toast('Cập Nhật Người Dùng Thành Công!','success');
 
