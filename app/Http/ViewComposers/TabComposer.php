@@ -28,17 +28,24 @@ use Auth;
      {
 
         Carbon::setLocale('vi'); // hiển thị ngôn ngữ tiếng việt.
-        $timenow = Carbon::now();
+        $timenow = Carbon::now('Asia/Ho_Chi_Minh');
+        $timetime = $timenow->addDays(5);
+        $nownow = Carbon::now('Asia/Ho_Chi_Minh');
+
+
 
          // tab b.3 products trang chủ
         $view->with('tab', DB::table('nhomsp')->where('Anhien',1)->get());
         // tab b6 products sale theo time trang chủ
         $view->with('tabsaletime', DB::table('sanpham')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
-        ->where('sanpham.Anhien',1)->where('time_discount','>',$timenow)->orderby('sanpham.updated_at','desc')->get());
+        ->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
+        ->where('sanpham.Anhien',1)->where('time_discount','>',$nownow)->orderby('sanpham.updated_at','desc')->get());
+        
         // tab b6 products sale trang chủ
         $view->with('tabsale', DB::table('sanpham')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+        ->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
         ->where('sanpham.Anhien',1)->where('old_price_sp','!=',null)->orderby('sanpham.updated_at','desc')->get());
         // tab b7 brand trang chủ
         $view->with('tabbrand', DB::table('nhacungcap')->orderby('id_thuonghieu','asc')->get());
@@ -78,6 +85,18 @@ use Auth;
 
         $view['newbill'] = DB::table('donhang')->where('id_tinhtrang','1')->orderby('created_at','desc')->get();
 
+        // menu admin || thông báo khi có sản phẩm gần hết hạn hoặc gần hết số lượng
+
+       
+        $view['notipro'] = DB::table('khohang')->where('khohang_soluong','<',15)->orWhere('khohang_hsd','<',$timetime,)
+        ->join('sanpham','sanpham.sku','khohang.sku')
+        ->get();
+       
+        
+      // cate sản phẩm
+
+   
+
         //thống kê dashboard admin
         $view['countbill'] = DB::table('donhang')->get();   
         $view['countuser'] = DB::table('users')->where('idgroup',0)->get();
@@ -86,7 +105,7 @@ use Auth;
 
         // banner trang chủ
         $view['bannerhome'] = DB::table('quangcao')->where('Anhien',1)->where('loai_quangcao','1')->get();
-        $view['bannersaleoff'] = DB::table('quangcao')->where('loai_quangcao','2')
+        $view['bannersaleoff'] = DB::table('quangcao')->where('loai_quangcao',2)
         ->where('quangcao.Anhien','1')
         ->join('sanpham','sanpham.id_sanpham','quangcao.id_sanpham')
         ->join('loaisp','sanpham.id_loaisp','loaisp.id_loaisp')

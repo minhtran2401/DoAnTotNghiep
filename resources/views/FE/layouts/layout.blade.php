@@ -96,6 +96,20 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
     <script src="{{asset('FE')}}/assets/js/customs_js/cart_js.js"></script>
     <script src="{{asset('FE')}}/assets/js/customs_js/form_js.js"></script>
     <script src="{{asset('FE')}}/assets/js/customs_js/search_js.js"></script>
+    {{-- <script>
+      $(document).keydown(function (event) {
+    if (event.keyCode == 123) { // Prevent F12
+        return false;
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) { // Prevent Ctrl+Shift+I        
+        return false;
+    }
+});
+
+$(document).on("contextmenu", function (e) {        
+    e.preventDefault();
+});
+    </script> --}}
+
     @yield('js')
 <!-- cust JavaScript -->
 </body>

@@ -253,7 +253,7 @@ footer {
           @else
           <td class="unit">{{number_format($item['productInfo']->price_sp)}} đ</td>
           @endif
-          <td class="qty">{{$item['quanty']}} {{$item['productInfo']->name_donvi}}</td>
+          <td class="qty"> {{$item['productInfo']->name_donvi}} X {{$item['quanty']}} </td>
             <td class="total">{{number_format($item['price'])}} đ</td>
           </tr>
           @endforeach

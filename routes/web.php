@@ -138,6 +138,8 @@ Route::group(['middleware' => ['auth','CheckAdmin']], function () {
     Route::post('change-status-tuyendung','App\Http\Controllers\TuyenDungController@changeStatus')->name('changeStatus.tuyendung');
     Route::post('change-status-counpon','App\Http\Controllers\CounponController@changeStatus')->name('changeStatus.counpon');
     Route::post('change-status-ads','App\Http\Controllers\QuangCaoController@changeStatus')->name('changeStatus.ads');
+    Route::post('change-status-kho','App\Http\Controllers\KhoHangController@changeStatus')->name('changeStatus.kho');
+
 
 
     //check đọc tất cả thông báo

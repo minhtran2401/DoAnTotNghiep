@@ -17,7 +17,10 @@
                                     </a>
                                     <div class="labels">
                                         <?php
-                                            $phantram = ceil(($sale->price_sp/$sale->old_price_sp) * 100) ;
+                                            // $phantram = ceil(($sale->price_sp / $sale->old_price_sp ) * 10) ;
+                                            $phantram = ceil(100 - (100 * ($sale->price_sp / $sale->old_price_sp ))) ;
+
+                                          
                                         ?>
                                         <span class="sale-label">- {{$phantram}} %</span>
                                     </div>
@@ -27,7 +30,7 @@
                                 <b class="categories">{{$sale->name_loaisp}}</b>
                                 <h4 class="product-title"><a href="#" class="pr-name">{{$sale->name_sp}}</a></h4>
                                     <div class="price ">
-                                    <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ</span></ins>
+                                    <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ / {{$sale->name_donvi}}</span></ins>
                                         <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->old_price_sp)}} đ</span></del>
                                     </div>
                                     <div class="slide-down-box">
@@ -62,9 +65,9 @@
                                 </div>
                                 <div class="info">
                                 <b class="categories">{{$sale->name_loaisp}}</b>
-                                <h4 class="product-title"><a href="#" class="pr-name">{{$sale->name_sp}}</a></h4>
+                                <h4 class="product-title"><a href="#" class="pr-name">{{$sale->name_sp}} </a></h4>
                                     <div class="price ">
-                                    <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ</span></ins>
+                                    <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ / {{$sale->name_donvi}}</span></ins>
                                         <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->old_price_sp)}} đ</span></del>
                                     </div>
        
