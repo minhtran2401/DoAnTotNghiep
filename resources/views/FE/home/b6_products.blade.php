@@ -12,7 +12,7 @@
                         <li class="product-item">
                             <div class="contain-product deal-layout contain-product__deal-layout">
                                 <div class="product-thumb">
-                                    <a href="#" class="link-to-product">
+                                <a href="{{route('singleproduct',$sale->slug_sp)}}" class="link-to-product">
                                     <img src="{{asset('hinhsp')}}/{{$sale->img_sp}}" alt="dd" width="330" height="330" class="product-thumnail">
                                     </a>
                                     <div class="labels">
@@ -28,7 +28,7 @@
                                 <div class="info">
                                 <div class="biolife-countdown" data-datetime="{{$sale->time_discount}}"></div>
                                 <b class="categories">{{$sale->name_loaisp}}</b>
-                                <h4 class="product-title"><a href="#" class="pr-name">{{$sale->name_sp}}</a></h4>
+                                <h4 class="product-title"><a href="{{route('singleproduct',$sale->slug_sp)}}" class="pr-name">{{$sale->name_sp}}</a></h4>
                                     <div class="price ">
                                     <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ / {{$sale->name_donvi}}</span></ins>
                                         <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->old_price_sp)}} đ</span></del>
@@ -59,13 +59,13 @@
                         <li class="product-item">
                             <div class="contain-product right-info-layout contain-product__right-info-layout">
                                 <div class="product-thumb">
-                                    <a href="#" class="link-to-product">
+                                    <a href="{{route('singleproduct',$sale->slug_sp)}}" class="link-to-product">
                                     <img src="{{asset('hinhsp')}}/{{$sale->img_sp}}" alt="dd" width="270" height="270" class="product-thumnail">
                                     </a>
                                 </div>
                                 <div class="info">
                                 <b class="categories">{{$sale->name_loaisp}}</b>
-                                <h4 class="product-title"><a href="#" class="pr-name">{{$sale->name_sp}} </a></h4>
+                                <h4 class="product-title"><a href="{{route('singleproduct',$sale->slug_sp)}}" class="pr-name">{{$sale->name_sp}} </a></h4>
                                     <div class="price ">
                                     <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->price_sp)}} đ / {{$sale->name_donvi}}</span></ins>
                                         <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($sale->old_price_sp)}} đ</span></del>
