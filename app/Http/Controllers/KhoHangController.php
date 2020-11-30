@@ -47,7 +47,7 @@ class KhoHangController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(rqKhoHang $request)
+    public function store(Request $request)
     
     { 
         
@@ -129,5 +129,21 @@ class KhoHangController extends Controller
             toast('Xóa Kho Hàng Thành Công!','success');
             return redirect()->route('nhap-kho-hang.index');
 
+    }
+
+    function changeStatus(Request $request){
+        //kiểm tra xem có phải ajax gửi request k
+        if($request->ajax()){
+            // không nhận được id thì báo lỗi
+            if(!$request->sku){
+                return "error";
+            }
+    
+            // hien 1 _____ an 0
+            //lấy nhóm sản phảm dựa theo id và update lai trạng thái
+            \App\KhoHang::where('sku',$request->sku)->update(['khohang_trangthai'=>$request->status]);
+            // trả về status hiện tại để xử lý front end
+            return $request->status;
+        }
     }
 }

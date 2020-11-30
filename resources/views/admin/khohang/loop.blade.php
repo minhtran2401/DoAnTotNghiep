@@ -36,6 +36,7 @@
                         <th>Ngày Nhập </th>
                         <th>Hạn Sử Dụng </th>
                         <th>Số lượng còn lại </th>
+                        <th>Trạng thái </th>
                         <th>Thao Tác</th>
                       </tr>
                     </thead>
@@ -45,7 +46,7 @@
                             <td class="text-center" >
                                # {{ $row->sku}}
                             </td>
-                            <td>
+                            <td style="width: 15%">
                             <div>{{$row->khohang_name}}</div>
                             </td>
                             <td>
@@ -58,16 +59,23 @@
                                   $today = \Carbon\Carbon::now();
                                   $difference = $today->diffInDays($expirydate, false);
                                 @endphp
-                                {{$row->khohang_hsd}} (Còn lại {{$difference}} ngày )
+                                Còn lại {{$difference}} ngày 
                               </div>
                             </td>
                             <td>
                               <div>
-                                {{$row->khohang_soluong}} {{$row->khohang_donvi}}
+                                {{$row->khohang_soluong}} sản phẩm
                               </div>
                             </td>
                        
-
+                            <td data-id="{{ $row->sku }}"  >
+                              <div class="pretty p-switch p-fill">
+                                <input type="checkbox" class="change-status" {{ $row->khohang_trangthai==1?'checked':'' }}>
+                                <div class="state p-success">
+                                  <label class="content-status">{{ $row->khohang_trangthai==1?'Đã nhập giá':'Chưa nhập giá'}}</label>
+                                </div>
+                              </div>
+                          </td>
                             <td >
                               <form class="form-check-inline"  method="GET">
                                   @csrf

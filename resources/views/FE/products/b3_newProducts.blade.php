@@ -8,17 +8,19 @@
             
             <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
                 <div class="contain-product layout-default">
-                    <div class="product-thumb">
+
+                    @forelse ($new_pro as $n)
+                          <div class="product-thumb">
                         <a href="#" class="link-to-product">
                             <img src="{{asset('FE')}}/assets/images/products/p-11.jpg" alt="dd" width="270" height="270" class="product-thumnail">
                         </a>
                     </div>
                     <div class="info">
                         <b class="categories">Fresh Fruit</b>
-                        <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit</a></h4>
+                    <h4 class="product-title"><a href="#" class="pr-name">{{$n->name_sp}}</a></h4>
                         <div class="price">
-                            <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                            <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
+                        <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($n->price_sp)}} đ</span></ins>
+                        {{-- <del><span class="price-amount"><span class="currencySymbol">£</span>{{$n->price}}</span></del> --}}
                         </div>
                         <div class="shipping-info">
                             <p class="shipping-day">3-Day Shipping</p>
@@ -33,6 +35,12 @@
                             </div>
                         </div>
                     </div>
+
+                    @empty
+                        <i>Không có sản phẩm...</i>
+                    @endforelse
+                  
+
                 </div>
             </li>
 

@@ -7,6 +7,7 @@ use DB;
 use App\Cart;
 use App\Counpon;
 use App\DonHang;
+use App\KhoHang;
 use App\ChiTietHD;
 use Session;
 use Illuminate\Support\Facades\Redirect;
@@ -191,7 +192,18 @@ class CartController extends Controller
             $ct->chitietdonhang_soluong = $item['quanty'];
             $ct->chitietdonhang_tongtien = $item['price'] ;
             $ct ->save();   
+            $sp = KhoHang ::where('sku', $item['productInfo']->sku)->select('sku','khohang_soluong')->get();
+            foreach($sp as $kho){
+                $sku = $kho->sku;
+                $soluong = $kho->khohang_soluong;
+                $revalue = $soluong - $ct->chitietdonhang_soluong;
+            }
+          
+      
+            DB::update("update khohang set khohang_soluong  = $revalue  where sku = $sku");
             }      
+
+           
         // toast('Đặt hàng thành công','success');
         alert()->success('Đặt hàng thành công','Bạn có thể kiểm tra hóa đơn qua địa chỉ email đã đăng kí.');
             

@@ -144,7 +144,11 @@ $agent->robot();
     // }
     public function cateprod($id){
         $cate_pro = LoaiSanPham::where('slug_loaisp',$id)->firstOrFail();
-        return view('FE.products.index',compact('cate_pro'));
+        $sale_pro = SanPham::join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+        ->where('slug_loaisp',$id)->where('sp_khuyenmai','1')->orderby('time_discount','desc')->get();
+        $new_pro = SanPham::join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+        ->where('slug_loaisp',$id)->where('sp_khuyenmai',0)->orderby('id_sanpham','desc')->get();
+        return view('FE.products.index',compact('cate_pro','sale_pro','new_pro'));
     }
 
     // single product:

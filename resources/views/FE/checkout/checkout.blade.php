@@ -164,7 +164,7 @@
                                                     </a>
                                                 </div>
                                                 <div class="info">
-                                                    <span name="soluongsp" class="txt-quantity">{{$item['quanty']}} {{$item['productInfo']->name_donvi}}</span>
+                                                    <span name="soluongsp" class="txt-quantity">{{$item['quanty']}} x {{$item['productInfo']->name_donvi}}</span>
                                                     <a href="#"  class="pr-name">{{$item['productInfo']->name_sp}}</a>
                                                    
                                                 </div>
@@ -181,7 +181,9 @@
                                             </div>
                                         </li>
                                         @endforeach
-                                       
+                                       {{-- @php
+                                       dd(Session::get("Cart"))
+                                       @endphp --}}
                                       </div>
                                     </div>
                               

@@ -75,67 +75,62 @@
                 </div>
               </form>
             </li>
+
+            <a href="#" class="nav-link nav-link-lg ">
+              <div class="pretty p-switch p-fill">
+                <input type="checkbox" class="change-status" >
+                <div class="state p-success">
+                  <label style="color: rgb(18, 230, 28)" class="content-status">Đang bật bảo vệ trang web</label>
+                </div>
+              </div>
+            </a>
+             
+              
+           
+            </li>
           </ul>
         </div>
         <ul class="navbar-nav navbar-right">
           <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-            class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
+            class="nav-link nav-link-lg message-toggle"><i data-feather="alert-octagon"></i>
             <span class="badge headerBadge1">
-              6 </span> </a>
+              {{count($notipro)}} </span> </a>
           <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
             <div class="dropdown-header">
-              Messages
+              Sản phẩm
               <div class="float-right">
-                <a href="#">Mark All As Read</a>
+                <a href="javascript:0">Đi bổ sung ngay</a>
               </div>
             </div>
             <div class="dropdown-list-content dropdown-list-message">
-              <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-                    text-white"> <img alt="image" src="assets/img/users/user-1.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">John
-                    Deo</span>
-                  <span class="time messege-text">Please check your mail !!</span>
-                  <span class="time">2 Min Ago</span>
-                </span>
-              </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                  <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                    Smith</span> <span class="time messege-text">Request for leave
-                    application</span>
-                  <span class="time">5 Min Ago</span>
-                </span>
-              </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                  <img alt="image" src="assets/img/users/user-5.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">Jacob
-                    Ryan</span> <span class="time messege-text">Your payment invoice is
-                    generated.</span> <span class="time">12 Min Ago</span>
-                </span>
-              </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                  <img alt="image" src="assets/img/users/user-4.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">Lina
-                    Smith</span> <span class="time messege-text">hii John, I have upload
-                    doc
-                    related to task.</span> <span class="time">30
-                    Min Ago</span>
-                </span>
-              </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                  <img alt="image" src="assets/img/users/user-3.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">Jalpa
-                    Joshi</span> <span class="time messege-text">Please do as specify.
-                    Let me
-                    know if you have any query.</span> <span class="time">1
-                    Days Ago</span>
-                </span>
-              </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white">
-                  <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle">
-                </span> <span class="dropdown-item-desc"> <span class="message-user">Sarah
-                    Smith</span> <span class="time messege-text">Client Requirements</span>
-                  <span class="time">2 Days Ago</span>
+              @forelse ($notipro as $noti)
+              @if($noti->khohang_soluong < 15)
+            <a href="{{route('nhap-kho-hang.edit',$noti->sku)}}" class="dropdown-item">
+              @else
+              <a href="{{route('san-pham.edit',$noti->id_sanpham)}}" class="dropdown-item">
+                @endif
+              <span class="dropdown-item-avatar
+              text-white"> <img alt="image" src="{{asset('hinhsp')}}/{{$noti->img_sp}}" class="rounded-circle">
+              </span> <span class="dropdown-item-desc"> <span class="message-user">{{$noti->name_sp}}</span>
+                @if($noti->khohang_soluong < 15)
+                  <span class="time messege-text"> <span style="color:rgb(174, 233, 36); font-weight:bold;" > Số lượng sản phẩm gần hết !!</span></span>
+                @else
+                @php
+                                 $expirydate = \Carbon\Carbon::parse($noti->khohang_hsd);
+                                  $today = \Carbon\Carbon::now();
+                                  $difference = $today->diffInDays($expirydate, false);
+                                @endphp
+                <span class="time messege-text">Gần hết hạn !!  <span style="color:rgb(174, 233, 36); font-weight:bold;" >Còn {{$difference}} ngày</span></span>
+                @endif
+            <span class="time"> Còn {{ $noti->khohang_soluong }} sản phẩm</span>
                 </span>
               </a>
+              @empty
+              asd
+             @endforelse
             </div>
             <div class="dropdown-footer text-center">
-              <a href="#">View All <i class="fas fa-chevron-right"></i></a>
+            <a href="{{route('nhap-kho-hang.index')}}">Xem tất cả <i class="fas fa-chevron-right"></i></a>
             </div>
           </div>
         </li >

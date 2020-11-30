@@ -37,6 +37,7 @@
                         <?php
                             $products = App\NhomSanPham::find($t->id_nhomsp)->ktsp()->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
                             ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+                            ->join('khohang','khohang.sku','sanpham.sku')
                             ->where('sanpham.Anhien',1)->where('sanpham.sp_khuyenmai','=' ,0)->orderby('id_sanpham','desc')
                             ->get();
                          ?>
@@ -63,9 +64,11 @@
                                     <div class="slide-down-box">
                                         <p class="message">Tất cả sản phẩm đều đã qua kiểm duyệt, đảm bảo hợp vệ sinh.</p>
                                         <div class="buttons">
-                                          
+                                            @if($pr->khohang_soluong < 5)
+                                            <a href="javascript:0" disabled class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Tạm Hết Hàng</a>
+                                            @else
                                             <a href="javascript:0" onclick="AddCart({{$pr->id_sanpham}})" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Thêm Vào Giỏ</a>
-                                          
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
