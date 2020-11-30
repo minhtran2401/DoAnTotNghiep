@@ -4,7 +4,7 @@
 <div class="main-content">
     <section class="section">
       <div class="section-body">
-     
+
 
         <div class="row">
           <div class="col-12">
@@ -33,7 +33,7 @@
                           #
                         </th>
                         <th>Tên</th>
-                        <th>Trạng Thái</th>      
+                        <th>Trạng Thái</th>
                         <th>Chi tiết</th>
                         <th>Thời gian</th>
                       </tr>
@@ -45,34 +45,33 @@
                             {{ $row->id}}
                         </td>
                         <td>
-                           
+
                             @php
                             $id_user = $row->causer_id;
                             $name = App\Users::find($id_user);
                             echo $name->name;
                           @endphp
-                        
+
                         </td>
                         <td>
                             <div>{{$row->description}}</div>
                         </td>
-                        
-                     
+
+
                         <td>
                           @php
-                            
+
                             $string = $row->properties;
                            $area = json_decode($string, true);
                           //  dd($area);
 
                             foreach($area['attributes'] as $i => $v)
                             {
-                             
                                 echo $v . '</br>';
                             }
                             @endphp
                         </td>
-                        
+
                         <td>
                           {{date('d-m-Y H:i:s', strtotime($row->updated_at))}}
                         </td>

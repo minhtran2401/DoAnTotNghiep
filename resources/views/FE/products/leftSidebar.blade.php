@@ -4,7 +4,7 @@
         <a class="biolife-close-btn" href="#" data-object="open-mobile-filter">&times;</a>
     </div>
     <div class="sidebar-contain">
-        
+
 
         <div class="widget price-filter biolife-filter">
             <h4 class="wgt-title">Giá</h4>
@@ -12,12 +12,12 @@
                 <div class="frm-contain">
                 <form action="" name="price-filter" id="price-filter" method="get">
                         <p class="f-item">
-                        
+
                             <input class="input-number " type="number" id="pr-from" value="" name="price-from">
                             <label for="pr-from">đ đến</label>
                         </p>
                         <p class="f-item">
-                           
+
                             <input class="input-number" type="number" id="pr-to" value="" name="price-from">
                             <label for="pr-to">đ</label>
                         </p>
@@ -33,13 +33,27 @@
         </div>
 
         <div class="widget biolife-filter">
+            <h4 class="wgt-title">Kích hoạt</h4>
+            <div class="wgt-content">
+                <h3>Tổng cộng: <span class="_t-item">(0 sản phẩm)</span></h3>
+                <div class="col-12 p-0" id="catFilters"></div>
+            </div>
+        </div>
+
+        <div class="widget biolife-filter">
             <h4 class="wgt-title">Thương hiệu</h4>
             <div class="wgt-content">
-                <ul class="check-list multiple">
-                    <li class="check-list-item"><a href="#" class="check-link">Great Value Organic</a></li>
-                    <li class="check-list-item"><a href="#" class="check-link">Plum Organic</a></li>
-                    <li class="check-list-item"><a href="#" class="check-link">Shop to Home</a></li>
-                </ul>
+                <div class="">
+                <?php $counter = 0; ?>
+                @if(!empty(App\ThuongHieu::all()))
+                @foreach (App\ThuongHieu::all() as $th)
+                    <input class="check-list-item" type="checkbox" {{($counter ==0 ? 'checked' : '')}}
+                    attr-name="{{$th->name_thuonghieu}}" id="{{$th->id_thuonghieu}}">
+                    <label class="check-link" for="{{$th->id_thuonghieu}}">{{($th->name_thuonghieu)}}</label><br>
+                <?php $counter++; ?>
+                @endforeach
+                @endif
+                </div>
             </div>
         </div>
 
@@ -102,7 +116,7 @@
                 </ul>
             </div>
         </div>
-{{-- 
+{{--
         <div class="widget biolife-filter">
             <h4 class="wgt-title">Product Tags</h4>
             <div class="wgt-content">

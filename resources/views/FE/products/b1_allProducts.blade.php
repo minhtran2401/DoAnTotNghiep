@@ -13,19 +13,17 @@
                 <form action="#" name="frm-refine" method="get">
                     <span class="title-for-mobile">Lọc Sản Phẩm</span>
                     <div data-title="Price:" class="selector-item">
-                        <select name="price" class="selector">
-                            <option value="all">Giá</option>
-                            <option value="class-1st">Less than 5$</option>
-                            <option value="class-2nd">$5-10$</option>
-                            <option value="class-3rd">$10-20$</option>
-                            <option value="class-4th">$20-45$</option>
-                            <option value="class-5th">$45-100$</option>
-                            <option value="class-6th">$100-150$</option>
-                            <option value="class-7th">More than 150$</option>
+                        <select  id="price" class="selector">
+                            <option value="">Giá</option>
+                            <option value="0-20000">0-20000</option>
+                            <option value="20000-50000">20000-50000</option>
+                            <option value="50000-100000">50000-100000</option>
+                            <option value="100000-150000">100000-150000</option>
+                            <option value="150000-250000">150000-250000</option>
                         </select>
                     </div>
                     <div data-title="Brand:" class="selector-item">
-                        <select name="brad" class="selector">
+                        <select class="selector">
                             <option value="all">Thương hiệu</option>
                             <option value="br2">Brand first</option>
                             <option value="br3">Brand second</option>
@@ -35,34 +33,45 @@
                         </select>
                     </div>
                     <div data-title="Avalability:" class="selector-item">
-                        <select name="ability" class="selector">
+                        <select id="ID_sp" class="selector">
                             <option value="all">Loại</option>
-                            <option value="vl2">Availability 1</option>
-                            <option value="vl3">Availability 2</option>
-                            <option value="vl4">Availability 3</option>
-                            <option value="vl5">Availability 4</option>
-                            <option value="vl6">Availability 5</option>
+                            @foreach (App\LoaiSanPham::all() as $ct)
+
+                            <option value="{{$ct->id_loaisp}}">{{$ct->name_loaisp}}</option>
+
+                            @endforeach
                         </select>
                     </div>
+                    {{-- <button class="btn" type="submit" id="findBtnn">
+                            Go
+                    </button> --}}
                     <p class="btn-for-mobile"><button type="submit" class="btn-submit">Go</button></p>
                 </form>
+
             </div>
         </div>
         <div class="flt-item to-right">
-            <span class="flt-title">Sort</span>
-            <div class="wrap-selectors">
-                <div class="selector-item orderby-selector">
-                    <select name="orderby" class="orderby" aria-label="Shop order">
-                        <option value="menu_order" selected="selected">Default sorting</option>
-                        <option value="popularity">popularity</option>
-                        <option value="rating">average rating</option>
-                        <option value="date">newness</option>
-                        <option value="price">price: low to high</option>
-                        <option value="price-desc">price: high to low</option>
-                    </select>
+            <form action="#" name="softProducts" id="softProducts" method="get">
+                <span class="flt-title">Sort</span>
+                <div class="wrap-selectors">
+                    <div class="selector-item orderby-selector">
+                        <select name="sort" id="sort" class="orderby" aria-label="Shop order">
+                            <option value="" selected="selected">Select</option>
+                            <option value="product_latest" @if(isset($_GET['sort']) && $_GET['sort']=="product_latest") selected="" @endif>
+                            Sản phẩm mới nhất</option>
+                            <option value="product_name_a_z" @if(isset($_GET['sort']) && $_GET['sort']=="product_name_a_z") selected="" @endif>
+                            Sản phẩm A - Z</option>
+                            <option value="product_name_z_a" @if(isset($_GET['sort']) && $_GET['sort']=="product_name_z_a") selected="" @endif>
+                            Sản phẩm Z - A</option>
+                            <option value="price_lowest" @if(isset($_GET['sort']) && $_GET['sort']=="price_lowest") selected="" @endif>
+                            Giá thấp đến cao</option>
+                            <option value="price_highest" @if(isset($_GET['sort']) && $_GET['sort']=="price_highest") selected="" @endif>
+                            Giá cao đến thấp</option>
+                        </select>
+                    </div>
+
                 </div>
-              
-            </div>
+            </form>
         </div>
     </div>
 
@@ -82,7 +91,7 @@
                     <h4 class="product-title"><a href="{{route('singleproduct',$p->slug_sp)}}" class="pr-name">{{ Str::limit($p->name_sp, 20) }}</a></h4>
                         <div class="price">
                             <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($p->price_sp)}} đ</span></ins>
-                           
+
                         </div>
                         <div class="shipping-info">
                             <p class="shipping-day">Sản Phẩm Mới</p>
@@ -91,10 +100,10 @@
                         <div class="slide-down-box">
                             <p class="message">Tất cả sản phẩm đều đã được kiểm duyệt</p>
                             <div class="buttons">
-                             
+
                                 <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down"
                                         aria-hidden="true"></i>thêm vào giỏ</a>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -107,10 +116,18 @@
 
     <div class="biolife-panigations-block">
         <ul class="panigation-contain">
-            <li>{!! $productpage->links() !!}</li>
+            <li>
+            @if(isset($_GET['sort']) && !empty($_GET['sort'])){
+                {{ $productpage->appends(['sort' => $_GET['sort']])->links()  }}
 
-           
+            @else
+                {!! $productpage->links() !!}}
+            @endif
+            </li>
+
+
         </ul>
     </div>
 
 </div>
+    <script src="{{asset('FE')}}/assets/js/customs_js/sort_js.js"></script>
