@@ -24,6 +24,8 @@ Route::get('/thong-ke-san-pham', [App\Http\Controllers\ChartController::class, '
 Route::get('/thong-ke-so-luong-san-pham', [App\Http\Controllers\ChartController::class, 'thong_ke_so_luong_san_pham'])->name('api.thong_ke_so_luong_san_pham');
 Route::get('/thong-ke-don-hang', [App\Http\Controllers\ChartController::class, 'thong_ke_don_hang'])->name('api.thong_ke_don_hang');
 Route::get('/thong-ke-thu-nhap', [App\Http\Controllers\ChartController::class, 'thong_ke_thu_nhap'])->name('api.thong_ke_thu_nhap');
+Route::get('/status-web', [App\Http\Controllers\PageController::class, 'status_web'])->name('api.status_web');
+
 
 
 

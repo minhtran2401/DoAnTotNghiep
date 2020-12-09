@@ -132,9 +132,9 @@ use Auth;
        
         }
          // protect website
-      $view['nof12'] = DB::table('protectweb')->where('id',1)->where('status',0)->value('code');
-
-    
+        
+      $view['nof12'] = DB::table('protectweb')->where('id',1)->first();
+  
      }
 
     

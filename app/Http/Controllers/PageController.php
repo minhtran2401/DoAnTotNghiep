@@ -292,4 +292,33 @@ $agent->robot();
         return view('FE.products.search_products', compact('kq'));
     }
 
+    function changeStatusWeb(Request $request){
+      //kiểm tra xem có phải ajax gửi request k
+      if($request->ajax()){
+          // không nhận được id thì báo lỗi
+          if(!$request->id){
+              return "error";
+          }
+  
+          // hien 1 _____ an 0
+          //lấy nhóm sản phảm dựa theo id và update lai trạng thái
+          DB::update("update protectweb set status = '$request->status' where id = '$request->id'");
+          // \App\SanPham::where('id_sanpham',$request->id)->update(['Anhien'=>$request->status]);
+          // trả về status hiện tại để xử lý front end
+          return $request->status;
+      }
+  }
+
+  public function status_web(){
+    $data = array();
+    $status =  DB::select('select * from protectweb where id = 1');
+    // $data[] = array($status);
+    foreach ($status as $t){
+      $tt['status'] = $t->status;
+      $tt['code'] = $t->code;
+
+    }
+    return response()->json($tt);
+  }
+
 }

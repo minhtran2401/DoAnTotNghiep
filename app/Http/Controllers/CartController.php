@@ -126,18 +126,23 @@ class CartController extends Controller
                     $is_avaiable = 0;
                     if($is_avaiable==0){
                         $cou[] = array(
+                            'counpon_id' => $coupon->counpon_id,
                             'counpon_code' => $coupon->counpon_code,
                             'counpon_type' => $coupon->counpon_type,
                             'counpon_number' => $coupon->counpon_number,
+                            'counpon_quanty' => $coupon->counpon_quanty,
 
                         );
                         Session::put('coupon',$cou);
                     }
                 }else{
                     $cou[] = array(
+                        'counpon_id' => $coupon->counpon_id,
                         'counpon_code' => $coupon->counpon_code,
                         'counpon_type' => $coupon->counpon_type,
                         'counpon_number' => $coupon->counpon_number,
+                        'counpon_quanty' => $coupon->counpon_quanty,
+
 
                         );
                     Session::put('coupon',$cou);
@@ -198,9 +203,20 @@ class CartController extends Controller
                 $soluong = $kho->khohang_soluong;
                 $revalue = $soluong - $ct->chitietdonhang_soluong;
             }
-          
+            
       
             DB::update("update khohang set khohang_soluong  = $revalue  where sku = $sku");
+            if(   Session::get('coupon')){
+                $cp = Session::get('coupon');
+                foreach($cp as $c=> $b ){
+                $rec = $b['counpon_quanty'] - 1;
+                $id_code = $b['counpon_id'];
+               
+                }
+                
+                   DB::update("update counpon set counpon_quanty  = $rec  where counpon_id = $id_code");
+            }
+         
             }      
 
            

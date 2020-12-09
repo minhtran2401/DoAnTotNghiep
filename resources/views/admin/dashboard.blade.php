@@ -97,24 +97,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
-        <div class="card">
-          <div class="card-header">
-            <h4>Biểu Đồ Thể Hiện Thu Nhập </h4>
-          </div>
-          <div class="card-body">
-            <div class="recent-report__chart">
-              <div id="thongkethunhap"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
       <div class="col-12 col-sm-12 col-lg-4">
         <div class="card">
           <div class="card-header">
-            <h4>Chart</h4>
+            <h4>Top sản phẩm bán chạy</h4>
           </div>
           <div class="card-body">
             <div id="chart4" class="chartsh"></div>
@@ -124,7 +110,7 @@
       <div class="col-12 col-sm-12 col-lg-4">
         <div class="card">
           <div class="card-header">
-            <h4>Chart</h4>
+            <h4>Top khách hàng tiềm năng</h4>
           </div>
           <div class="card-body">
             <div class="summary">
@@ -140,7 +126,7 @@
       <div class="col-12 col-sm-12 col-lg-4">
         <div class="card">
           <div class="card-header">
-            <h4>Chart</h4>
+            <h4>Thống kê hàng tồn kho</h4>
           </div>
           <div class="card-body">
             <div id="chart2" class="chartsh"></div>
@@ -148,6 +134,21 @@
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
+        <div class="card">
+          <div class="card-header">
+            <h4>Biểu Đồ Thể Hiện Thu Nhập </h4>
+          </div>
+          <div class="card-body">
+            <div class="recent-report__chart">
+              <div id="thongkethunhap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   
     <div class="row">     
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
         <div class="card">
