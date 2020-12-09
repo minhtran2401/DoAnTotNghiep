@@ -8,9 +8,10 @@ use App\HinhSanPham;
 use App\LoaiSanPham;
 use App\LoaiBlog;
 use App\Blog;
+use App\ThuongHieu;
 use DB;
 use Illuminate\Database\QueryException;
-use Validator; 
+use Validator;
 use Illuminate\Http\Request;
 use App\RegEmail;
 // use Illuminate\Support\Facades\Mail;
@@ -58,7 +59,7 @@ $agent->robot();
 // dd($agent);
 // robot name
         return view('FE.home.index');
-   
+
     }
      function getinfo($id){
         $popup = SanPham::join('loaisp','sanpham.id_loaisp','loaisp.id_loaisp')
@@ -68,20 +69,79 @@ $agent->robot();
         return view('FE.layouts.popup', compact('popup','hinh'));
 
     }
-    
+
 
     // Products:
     public function allprod(){
-        $title = "TẤT CẢ SẢN PHẨM";
-        $productpage = SanPham::orderby('id_sanpham','desc')->where('sanpham.Anhien','1')
+        $title  = "TẤT CẢ SẢN PHẨM";
+
+        $productpage = SanPham::where('sanpham.Anhien','1')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
-        ->where('sp_khuyenmai','0')->paginate(12);
+        ->where('sp_khuyenmai','0');
+
         $productsalepage = SanPham::where('sanpham.Anhien',1)->where('sp_khuyenmai',1)->orderby('time_discount','desc')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->get();
+        // Neu Soft duoc chon boi User
+        if(isset($_GET['sort']) && !empty($_GET['sort'])){
+            if($_GET['sort']=="product_latest"){
+                $productpage->orderBy('id_sanpham','desc');
+            }else if($_GET['sort']=="product_name_a_z"){
+                $productpage->orderBy('name_sp','asc');
+            }else if($_GET['sort']=="product_name_z_a"){
+                $productpage->orderBy('name_sp','desc');
+            }else if($_GET['sort']=="price_lowest"){
+                $productpage->orderBy('price_sp','asc');
+            }else if($_GET['sort']=="price_highest"){
+                $productpage->orderBy('price_sp','desc');
+            }
+        }else{
+            $productpage->orderBy('id_sanpham','desc');
+        }
+        $productpage = $productpage->paginate(12);
+
         $data = ['type_product' => 'all-products', 'title'=>$title,'productpage'=>$productpage,'productsalepage'=>$productsalepage];
         return view('FE.products.index',$data);
     }
+    // public function allprod(Request $request){
+    //     $title  = "TẤT CẢ SẢN PHẨM";
+    //     $id_lsp = $request->id_loaisp;
+    //     $price  = explode("-",$request->price_sp);
+
+    //     $start = $price[0];
+    //     $end   = $price[0];
+
+    //     if($id_lsp!="" && $price!=""){
+    //     $productpage = SanPham::orderby('id_sanpham','desc')->where('sanpham.Anhien','1')
+    //     ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+    //     ->where('sanpham.id_loaisp',$id_lsp)
+    //     ->where('sanpham.price_sp', ">=", $start)
+    //     ->where('sanpham.price_sp', "<=", $end)
+    //     ->where('sp_khuyenmai','0')->paginate(12)
+    //     ->get();
+
+
+    //     }else if($id_lsp!=""){
+    //         $productpage = SanPham::orderby('id_sanpham','desc')->where('sanpham.Anhien','1')
+    //         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+    //         ->where('sanpham.id_loaisp',$id_lsp)
+    //         ->where('sp_khuyenmai','0')->paginate(12)
+    //         ->get();
+
+
+    //     }else if($price!=""){
+    //         $productpage = SanPham::orderby('id_sanpham','desc')->where('sanpham.Anhien','1')
+    //         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+    //         ->where('sanpham.price_sp', ">=", $start)
+    //         ->where('sanpham.price_sp', "<=", $end)
+    //         ->where('sp_khuyenmai','0')->paginate(12)
+    //         ->get();
+
+
+    //     }
+    //     $data = ['type_product' => 'all-products', 'title'=>$title,'productpage'=>$productpage];
+    //     return view('FE.products.index',$data);
+    // }
     public function cateprod($id){
         $cate_pro = LoaiSanPham::where('slug_loaisp',$id)->firstOrFail();
         $sale_pro = SanPham::join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
@@ -92,7 +152,7 @@ $agent->robot();
     }
 
     // single product:
-    public function singleproduct($id){  
+    public function singleproduct($id){
         $sp = SanPham::where('slug_sp', $id)
         ->join('nhacungcap','nhacungcap.id_thuonghieu','sanpham.id_thuonghieu')
         ->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
@@ -134,15 +194,20 @@ $agent->robot();
         ->paginate(6);
         return view('FE.blog.index', compact('type_blog', 'all_blog'));
     }
-    public function tuyendung($id){  
+    public function allthuonghieu(){
+        $all_thuonghieu = DB::table('nhacungcap')->where('Anhien',1)->orderby('id_thuonghieu','asc')
+        ->join('sanpham','sanpham.id_thuonghieu','nhacungcap.id_thuonghieu');
+        return view('FE.products.leftSidebar', compact('all_thuonghieu'));
+    }
+    public function tuyendung($id){
       $td = TuyenDung::where('id_tuyendung',$id)->where('Anhien',1)->firstorfail();
       return view('FE.tuyendung.tuyendung',compact('td'));
   }
-    public function canhan(){  
+    public function canhan(){
       return view('FE.canhan.index');
   }
   public function update_info(checkinfokh $request, $id){
- 
+
     $dv = User::Find($id);
     $dv->name = request()->get('name');
     // $dv->email = request()->get('email');
@@ -151,10 +216,10 @@ $agent->robot();
     toast('Đã Cập Nhật Thông Tin Cá Nhân','success');
     return redirect()->back();
   }
-    public function canhan_donhang(){  
+    public function canhan_donhang(){
       return view('FE.canhan.donhang');
   }
-    public function dmk(){  
+    public function dmk(){
       // $td = TuyenDung::where($id)
       // ->firstOrFail();
       return view('FE.canhan.dmk');
@@ -180,7 +245,7 @@ $agent->robot();
         if (empty($contact_email['name']) || empty($contact_email['email']) || empty($contact_email['mes'])) {
             return response()->json(['kq' => 'failed']);
         }
-   
+
         Mail::send('FE.emails.callback_contact', array(
             'name' => $contact_email['name'],
             'email' => $contact_email['email'],
@@ -190,7 +255,7 @@ $agent->robot();
             $message->from('gfcustomer@gmail.com');
             $message->to('contactgreenfresh@gmail.com', 'Admin')->subject('CỬA HÀNG GREENFRESH');
         });
-        
+
         // này ông viết 1 cái mới nha, quy ước trùng email thì tạo mới hay thế nào đó:
         // $regemail = new RegEmail([
         //     'email' => $request->get('email')
@@ -203,27 +268,27 @@ $agent->robot();
     public function aboutus(){
         return view('FE.ingredients_page.aboutUs');
     }
-    
+
 
     public function menufe(){
         return view('FE.layouts.menu');
     }
- 
+
     public function admin_credential_rules(array $data)
     {
       $messages = [
         'current-password.required' => 'Hãy nhập mật khẩu hiện tại',
         'password.required' => 'Hãy nhập mật khẩu',
       ];
-    
+
       $validator = Validator::make($data, [
         'current-password' => 'required',
         'password' => 'required|same:password',
-        'password_confirmation' => 'required|same:password',     
+        'password_confirmation' => 'required|same:password',
       ], $messages);
-    
+
       return $validator;
-    }  
+    }
 
     public function postCredentials(Request $request)
     {
@@ -238,36 +303,36 @@ $agent->robot();
         return redirect()->back();
         }
         else
-        {  
-          $current_password = Auth::User()->password;           
+        {
+          $current_password = Auth::User()->password;
           if(Hash::check($request_data['current-password'], $current_password))
-          {           
-            $user_id = Auth::User()->id;                       
+          {
+            $user_id = Auth::User()->id;
             $obj_user = User::find($user_id);
             $obj_user->password = Hash::make($request_data['password']);
-            $obj_user->save(); 
+            $obj_user->save();
             toast('Đổi mật khẩu thành công !','success');
             return redirect()->back();
-          
+
           }
           else
-          {           
+          {
             alert()->warning('Thất bại','Có vẻ như bạn đang đăng nhập bằng tài khoản mạng xã hội, hãy đăng kí tài khoản GreenFresh và thử lại nhé !');
             return redirect()->back();
           }
-        }        
+        }
       }
       else
       {
         return redirect()->to('/');
-      }    
+      }
     }
 
     // search khi nhập
     public function searchname(Request $request)
     {
         $sanpham = SanPham::where('name_sp', 'like', '%' . $request->value . '%')->get();
-      
+
         return response()->json($sanpham);
     }
 

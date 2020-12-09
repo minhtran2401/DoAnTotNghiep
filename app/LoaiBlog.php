@@ -25,7 +25,7 @@ class LoaiBlog extends Model {
      //chỉ định một số thuộc tính thay đổi
      protected static $ignoreChangedAttributes = [ 'updated_at'];
 
-     protected static $logAttributes = ['name_loaiblog', 'slug_loaiblog'];
+     protected static $logAttributes = ['name_loaiblog'];
 
      protected static $recordEvents = ['created','updated','deleted'];
 
@@ -42,7 +42,7 @@ class LoaiBlog extends Model {
 
      public function getDescriptionForEvent(string $eventName): string
      {
-         return "Have {$eventName} blog";
+         return "Đã {$eventName} blog";
      }
 }
 
