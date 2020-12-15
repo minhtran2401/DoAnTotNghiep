@@ -134,7 +134,7 @@ use Auth;
          // protect website
         
       $view['nof12'] = DB::table('protectweb')->where('id',1)->first();
-  
+      $view['baotri'] = DB::table('protectweb')->where('id',2)->first();
      }
 
     

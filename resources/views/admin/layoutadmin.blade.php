@@ -65,16 +65,7 @@
             <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
                 <i data-feather="maximize"></i>
               </a></li>
-            <li>
-              <form class="form-inline mr-auto">
-                <div class="search-element">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-                  <button class="btn" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </form>
-            </li>
+         
 
             <a href="#" class="nav-link nav-link-lg ">
               @if($nof12->status == 1)
@@ -82,21 +73,45 @@
               <div class="pretty p-switch p-fill">
                 <input type="checkbox"  id="change-status-web" class="change-status" checked }}>
                 <div class="state p-success">
-                  <label style="color: rgb(18, 230, 28)" class="content-status"> Đang bật bảo vệ trang web</label>
+                  <label style="color: rgb(18, 230, 28)" class="content-status"> ĐANG BẬT BẢO VỆ TRANG WEB</label>
                 </div>
                 @else
-                <div >
+              
                   <div  data-id="{{ $nof12->id }}">
                   <div class="pretty p-switch p-fill">
                     <input type="checkbox"  id="change-status-web" class="change-status">
                     <div class="state p-success">
-                      <label style="color: rgb(18, 230, 28)" class="content-status">Đang tắt bảo vệ trang web</label>
+                      <label style="color: rgb(18, 230, 28)" class="content-status">ĐANG TẮT BẢO VỆ TRANG WEB</label>
                     </div>
                 @endif
               </div>
             </div>
             </a>
              
+
+            @if($baotri->status == 0)
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('shutdown') }}" method="post">
+                @csrf
+                <button onclick="xacnhan(event)" style="submit" class="btn">BẢO TRÌ WEBSITE</button>
+            </form>
+            </a>
+            @else
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('start') }}" method="post">
+                @csrf
+                <button onclick="xacnhan2(event)" style="submit" class="btn">KHỞI ĐỘNG WEBSITE</button>
+            </form>
+            </a>
+            @endif
+
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('our_backup_database') }}" method="get">
+                <button style="submit" class="btn">XUẤT DATABASE</button>
+            </form>
+            </a>
+
+          
               
            
             </li>
@@ -473,6 +488,52 @@ function(isConfirm){
     form.submit();          // submitting the form when user press yes
   } else {
     swal("Đã hủy", " Chưa xóa gì cả :)", "error");
+  }
+});
+}
+
+function xacnhan(event) {
+event.preventDefault(); // prevent form submit
+var form = event.target.form; // storing the form
+        swal({
+  title: "Bạn có chắc ?",
+  text: "Thao tác này sẽ đưa trang web vào trạng thái bảo trì",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Xác Nhận",
+  cancelButtonText: "Từ Từ",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    form.submit();          // submitting the form when user press yes
+  } else {
+    swal("Đã hủy", " Chưa làm gì cả :)", "error");
+  }
+});
+}
+
+function xacnhan2(event) {
+event.preventDefault(); // prevent form submit
+var form = event.target.form; // storing the form
+        swal({
+  title: "Bạn có chắc ?",
+  text: "Thao tác này sẽ đưa trang web vào trạng thái hoạt động",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#7faf51",
+  confirmButtonText: "Xác Nhận",
+  cancelButtonText: "Từ Từ",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    form.submit();          // submitting the form when user press yes
+  } else {
+    swal("Đã hủy", " Chưa làm gì cả :)", "error");
   }
 });
 }

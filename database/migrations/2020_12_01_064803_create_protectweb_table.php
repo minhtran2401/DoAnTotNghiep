@@ -16,7 +16,7 @@ class CreateProtectwebTable extends Migration
         Schema::create('protectweb', function (Blueprint $table) {
             $table->id();
             $table->string('name_protect');
-            $table->text('code');
+         
             $table->integer('status');
             $table->timestamps();
         });

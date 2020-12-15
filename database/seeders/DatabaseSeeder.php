@@ -51,35 +51,6 @@ class DatabaseSeeder extends Seeder
             'idgroup'=>'0',
         ]);
 
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '1',
-            'name_tinhtrang'=>'Chưa xử lí',
-        ]);
-
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '2',
-            'name_tinhtrang'=>'Đã xác nhận',
-        ]);
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '3',
-            'name_tinhtrang'=>'Đang gói hàng',
-        ]);
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '4',
-            'name_tinhtrang'=>'Đang vận chuyển',
-        ]);
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '5',
-            'name_tinhtrang'=>'Đã thanh toán',
-        ]);
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '6',
-            'name_tinhtrang'=>'Chưa thanh toán',
-        ]);
-        DB::table('tinhtranghd')->insert([
-            'id_tinhtrang' => '7',
-            'name_tinhtrang'=>'Đã hủy đơn',
-        ]);
-
+      
     }
 }

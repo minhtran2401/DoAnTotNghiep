@@ -43,6 +43,7 @@ Route::get('/thong-tin-ca-nhan', [App\Http\Controllers\PageController::class, 'c
 Route::get('/thanh-toan', [App\Http\Controllers\PageController::class, 'checkout'])->name('checkout');
 Route::post('/thanhtoan', [App\Http\Controllers\CartController::class, 'thanhtoan'])->name('thanhtoan');
 
+Route::get('/xemgan', [App\Http\Controllers\PageController::class, 'viewedProduct'])->name('xemgan');
 
 
 
@@ -124,6 +125,13 @@ Route::group(['middleware' => ['auth','CheckAdmin']], function () {
 
     //lấy loại sp theo nhóm
     Route::get('/get-type-pro/{id_nhomsp}', [App\Http\Controllers\SanPhamController::class, 'get_type_pro'])->name('get_type_pro');
+
+    //backup-database
+    Route::get('/our_backup_database', 'App\Http\Controllers\PageController@our_backup_database')->name('our_backup_database');
+    Route::post('/shutdown', 'App\Http\Controllers\PageController@shutdown')->name('shutdown');
+    Route::post('/start', 'App\Http\Controllers\PageController@start')->name('start');
+
+
 
 
     //thay đổi ẩn hiện

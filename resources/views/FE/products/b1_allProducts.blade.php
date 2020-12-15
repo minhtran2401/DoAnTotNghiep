@@ -52,7 +52,7 @@
         </div>
         <div class="flt-item to-right">
             <form action="#" name="softProducts" id="softProducts" method="get">
-                <span class="flt-title">Sort</span>
+                <span class="flt-title">Sắp xếp</span>
                 <div class="wrap-selectors">
                     <div class="selector-item orderby-selector">
                         <select name="sort" id="sort" class="orderby" aria-label="Shop order">
