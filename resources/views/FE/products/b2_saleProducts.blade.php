@@ -9,16 +9,16 @@
 
                 @forelse ($sale_pro as $s)
                 <div class="product-thumb">
-                    <a href="#" class="link-to-product">
-                        <img src="{{asset('FE')}}/assets/images/products/p-08.jpg" alt="dd" width="270" height="270" class="product-thumnail">
+                    <a href="{{route('singleproduct',$s->slug_sp)}}" class="link-to-product">
+                    <img src="{{asset('hinhsp')}}/{{$s->img_sp}}" alt="dd" width="270" height="270" class="product-thumnail">
                     </a>
                 </div>
                 <div class="info">
-                    <b class="categories">Fresh Fruit</b>
-                    <h4 class="product-title"><a href="#" class="pr-name">National Fresh Fruit z</a></h4>
+                <b class="categories">{{$s->name_loaisp}}</b>
+                <h4 class="product-title"><a href="{{route('singleproduct',$s->slug_sp)}}" class="pr-name">{{$s->name_sp}}</a></h4>
                     <div class="price">
-                        <ins><span class="price-amount"><span class="currencySymbol">£</span>85.00</span></ins>
-                        <del><span class="price-amount"><span class="currencySymbol">£</span>95.00</span></del>
+                    <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($s->price_sp)}} đ</span></ins>
+                        <del><span class="price-amount"><span class="currencySymbol"></span>{{number_format($s->old_price_sp)}} đ</span></del>
                     </div>
                 </div>
                 @empty

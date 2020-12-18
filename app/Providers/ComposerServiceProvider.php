@@ -37,6 +37,11 @@ class ComposerServiceProvider  extends ServiceProvider
          view()->composer('FE.layouts.menu', 'App\Http\ViewComposers\TabComposer' ); 
          view()->composer('FE.canhan.index', 'App\Http\ViewComposers\TabComposer' ); 
          view()->composer('FE.canhan.donhang', 'App\Http\ViewComposers\TabComposer' ); 
+         view()->composer('FE.products.index', 'App\Http\ViewComposers\TabComposer' ); 
+         view()->composer('FE.shopping_cart.index', 'App\Http\ViewComposers\TabComposer' ); 
+
+
+
 
             view()->composer('*', 'App\Http\ViewComposers\InfoComposer'); 
 

@@ -122,28 +122,41 @@ class CartController extends Controller
             $count_coupon = $coupon->count();
             if($count_coupon>0){
                 $coupon_session = Session::get('coupon');
+                $checkgiatong = Session::get('Cart')->totalPrice;
+                $checkgia = $coupon->counpon_number;
+                $double = number_format($checkgia * 2);
+                // $kiemtragia = $checkgia - $checkgiatong;
+                
+                if($checkgia < ($checkgiatong / 2)) {
                 if($coupon_session==true){
                     $is_avaiable = 0;
                     if($is_avaiable==0){
                         $cou[] = array(
+                            'counpon_id' => $coupon->counpon_id,
                             'counpon_code' => $coupon->counpon_code,
                             'counpon_type' => $coupon->counpon_type,
                             'counpon_number' => $coupon->counpon_number,
+                            'counpon_quanty' => $coupon->counpon_quanty,
 
                         );
                         Session::put('coupon',$cou);
                     }
                 }else{
                     $cou[] = array(
+                        'counpon_id' => $coupon->counpon_id,
                         'counpon_code' => $coupon->counpon_code,
                         'counpon_type' => $coupon->counpon_type,
                         'counpon_number' => $coupon->counpon_number,
-
+                        'counpon_quanty' => $coupon->counpon_quanty,
                         );
                     Session::put('coupon',$cou);
                 }
                 Session::save();
                 toast('Đã áp dụng mã giảm giá !','success');
+                }
+                else{
+                toast("Mã giảm giá không đủ điều kiện sử dụng , áp dụng cho hóa đơn từ $double đ trở lên !","warning");
+                }
                 return redirect()->back();
             }
 
@@ -198,9 +211,20 @@ class CartController extends Controller
                 $soluong = $kho->khohang_soluong;
                 $revalue = $soluong - $ct->chitietdonhang_soluong;
             }
-          
+            
       
             DB::update("update khohang set khohang_soluong  = $revalue  where sku = $sku");
+            if(   Session::get('coupon')){
+                $cp = Session::get('coupon');
+                foreach($cp as $c=> $b ){
+                $rec = $b['counpon_quanty'] - 1;
+                $id_code = $b['counpon_id'];
+               
+                }
+                
+                   DB::update("update counpon set counpon_quanty  = $rec  where counpon_id = $id_code");
+            }
+         
             }      
 
            

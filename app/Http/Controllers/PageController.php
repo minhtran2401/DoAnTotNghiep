@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use Artisan;
 use Auth;
 use Hash;
 use App\Models\User;
@@ -23,7 +24,8 @@ use Illuminate\Support\Facades\DB as FacadesDB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Jenssegers\Agent\Agent;
 use App\TuyenDung;
-
+use Cookie;
+use Cache;
 
 
 class PageController extends Controller
@@ -82,7 +84,7 @@ $agent->robot();
         $productsalepage = SanPham::where('sanpham.Anhien',1)->where('sp_khuyenmai',1)->orderby('time_discount','desc')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->get();
-        // Neu Soft duoc chon boi User
+        // Neu Sort duoc chon boi User
         if(isset($_GET['sort']) && !empty($_GET['sort'])){
             if($_GET['sort']=="product_latest"){
                 $productpage->orderBy('id_sanpham','desc');
@@ -147,24 +149,31 @@ $agent->robot();
         $sale_pro = SanPham::join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->where('slug_loaisp',$id)->where('sp_khuyenmai','1')->orderby('time_discount','desc')->get();
         $new_pro = SanPham::join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
-        ->where('slug_loaisp',$id)->where('sp_khuyenmai',0)->orderby('id_sanpham','desc')->get();
+        ->join('khohang','khohang.sku','sanpham.sku')
+        ->where('slug_loaisp',$id)->where('sp_khuyenmai',0)->orderby('id_sanpham','desc')->paginate(9);
         return view('FE.products.index',compact('cate_pro','sale_pro','new_pro'));
     }
 
     // single product:
-    public function singleproduct($id){
+    public function singleproduct(Request $request, $id){
         $sp = SanPham::where('slug_sp', $id)
         ->join('nhacungcap','nhacungcap.id_thuonghieu','sanpham.id_thuonghieu')
         ->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->join('nhomsp','nhomsp.id_nhomsp','sanpham.id_nhomsp')
         ->firstOrFail();
+
+        session()->push('products.recently_viewed', $sp->getKey());
+
+    //  dd($request);
+
+
         $hinh = HinhSanPham::join('sanpham','sanpham.id_sanpham','imgchitiet.id_sanpham')->where('sanpham.slug_sp',$id)->orderby('sanpham.id_sanpham','desc')->limit(15)->get();
         $splq = SanPham::where('sanpham.id_nhomsp','=',$sp->id_nhomsp)
         ->join('nhomsp','nhomsp.id_nhomsp','sanpham.id_nhomsp')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->get();
-        return view('FE.single_product.index', compact('sp','hinh','splq'));
+        return view('FE.single_product.index', compact('sp','hinh','splq',));
     }
 
     // blog:
@@ -356,5 +365,122 @@ $agent->robot();
         $kq = $kq->where('name_sp', 'like', '%' . $request->get('q') . '%')->orWhere('price_sp', 'like', '%' . $request->get('q') . '%')->where('Anhien',1)->orderby('id_sanpham','desc')->paginate(6);
         return view('FE.products.search_products', compact('kq'));
     }
+
+    function changeStatusWeb(Request $request){
+      //kiểm tra xem có phải ajax gửi request k
+      if($request->ajax()){
+          // không nhận được id thì báo lỗi
+          if(!$request->id){
+              return "error";
+          }
+  
+          // hien 1 _____ an 0
+          //lấy nhóm sản phảm dựa theo id và update lai trạng thái
+          DB::update("update protectweb set status = '$request->status' where id = '$request->id'");
+          // \App\SanPham::where('id_sanpham',$request->id)->update(['Anhien'=>$request->status]);
+          // trả về status hiện tại để xử lý front end
+          return $request->status;
+      }
+  }
+
+  public function status_web(){
+    $data = array();
+    $status =  DB::select('select * from protectweb where id = 1');
+    // $data[] = array($status);
+    foreach ($status as $t){
+      $tt['status'] = $t->status;
+
+
+    }
+    return response()->json($tt);
+  }
+
+  public function our_backup_database(){
+
+    //ENTER THE RELEVANT INFO BELOW
+    $mysqlHostName      = env('DB_HOST');
+    $mysqlUserName      = env('DB_USERNAME');
+    $mysqlPassword      = env('DB_PASSWORD');
+    $DbName             = env('DB_DATABASE');
+    $backup_name        = "mybackup.sql";
+    $tables             = array("activity_log","binhluan","blog","chitiethd","counpon","donhang","donvitinh","email","failed_jobs","imgchitiet",
+  "info","khohang","loaiblog","loaisp","lohang","migrations","nhacungcap","nhomsp","password_resets","protectweb","quangcao","sanpham","sns","tinhtranghd","tuyendung","users"); //here your tables...
+
+    $connect = new \PDO("mysql:host=$mysqlHostName;dbname=$DbName;charset=utf8", "$mysqlUserName", "$mysqlPassword",array(\PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
+    $get_all_table_query = "SHOW TABLES";
+    $statement = $connect->prepare($get_all_table_query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+
+
+    $output = '';
+    foreach($tables as $table)
+    {
+     $show_table_query = "SHOW CREATE TABLE " . $table . "";
+     $statement = $connect->prepare($show_table_query);
+     $statement->execute();
+     $show_table_result = $statement->fetchAll();
+
+     foreach($show_table_result as $show_table_row)
+     {
+      $output .= "\n\n" . $show_table_row["Create Table"] . ";\n\n";
+     }
+     $select_query = "SELECT * FROM " . $table . "";
+     $statement = $connect->prepare($select_query);
+     $statement->execute();
+     $total_row = $statement->rowCount();
+
+     for($count=0; $count<$total_row; $count++)
+     {
+      $single_result = $statement->fetch(\PDO::FETCH_ASSOC);
+      $table_column_array = array_keys($single_result);
+      $table_value_array = array_values($single_result);
+      $output .= "\nINSERT INTO $table (";
+      $output .= "" . implode(", ", $table_column_array) . ") VALUES (";
+      $output .= "'" . implode("','", $table_value_array) . "');\n";
+     }
+    }
+    $file_name = 'database_backup_on_' . date('y-m-d') . '.sql';
+    $file_handle = fopen($file_name, 'w+');
+    fwrite($file_handle, $output);
+    fclose($file_handle);
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename=' . basename($file_name));
+    header('Content-Transfer-Encoding: binary');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+       header('Pragma: public');
+       header('Content-Length: ' . filesize($file_name));
+       ob_clean();
+       flush();
+       readfile($file_name);
+       unlink($file_name);
+
+
+// tắt nguồn web
+
+}
+ public function shutdown()
+{
+  DB::update('update protectweb set status = 1 where id = 2');
+  Artisan::call('down --secret=gfteam');
+  alert()->warning('Cảnh báo','Đã đưa trang web vào trạng thái bảo trì! Chỉ có quản trị viên mới có thể truy cập website.');
+  return redirect('/gfteam');
+ 
+}
+
+// khởi động lại web
+public function start(){
+  Artisan::call('up');
+  DB::update('update protectweb set status = 0 where id = 2');
+  alert()->success('Kích hoạt Thành công','Trang web đã vào trạng thái hoạt động !');
+  return redirect('/dashboard');
+
+}
+
+
+
+
 
 }

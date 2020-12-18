@@ -59,7 +59,11 @@
                                   $today = \Carbon\Carbon::now();
                                   $difference = $today->diffInDays($expirydate, false);
                                 @endphp
+                                @if($difference < 0)
+                                  <div style="color: red">  Đã hết hạn sử dụng </div>
+                                @else
                                 Còn lại {{$difference}} ngày 
+                                @endif
                               </div>
                             </td>
                             <td>

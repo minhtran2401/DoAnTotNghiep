@@ -65,26 +65,53 @@
             <li><a href="#" class="nav-link nav-link-lg fullscreen-btn">
                 <i data-feather="maximize"></i>
               </a></li>
-            <li>
-              <form class="form-inline mr-auto">
-                <div class="search-element">
-                  <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
-                  <button class="btn" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                </div>
-              </form>
-            </li>
+         
 
             <a href="#" class="nav-link nav-link-lg ">
+              @if($nof12->status == 1)
+              <div  data-id="{{ $nof12->id }}">
               <div class="pretty p-switch p-fill">
-                <input type="checkbox" class="change-status" >
+                <input type="checkbox"  id="change-status-web" class="change-status" checked }}>
                 <div class="state p-success">
-                  <label style="color: rgb(18, 230, 28)" class="content-status">Đang bật bảo vệ trang web</label>
+                  <label style="color: rgb(18, 230, 28)" class="content-status"> ĐANG BẬT BẢO VỆ TRANG WEB</label>
                 </div>
+                @else
+              
+                  <div  data-id="{{ $nof12->id }}">
+                  <div class="pretty p-switch p-fill">
+                    <input type="checkbox"  id="change-status-web" class="change-status">
+                    <div class="state p-success">
+                      <label style="color: rgb(18, 230, 28)" class="content-status">ĐANG TẮT BẢO VỆ TRANG WEB</label>
+                    </div>
+                @endif
               </div>
+            </div>
             </a>
              
+
+            @if($baotri->status == 0)
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('shutdown') }}" method="post">
+                @csrf
+                <button onclick="xacnhan(event)" style="submit" class="btn">BẢO TRÌ WEBSITE</button>
+            </form>
+            </a>
+            @else
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('start') }}" method="post">
+                @csrf
+                <button onclick="xacnhan2(event)" style="submit" class="btn">KHỞI ĐỘNG WEBSITE</button>
+            </form>
+            </a>
+            @endif
+
+            <a href="#" class="nav-link nav-link-lg ">
+              <form action="{{ route('our_backup_database') }}" method="get">
+                <button style="submit" class="btn">XUẤT DATABASE</button>
+            </form>
+            </a>
+
+          
               
            
             </li>
@@ -120,7 +147,11 @@
                                   $today = \Carbon\Carbon::now();
                                   $difference = $today->diffInDays($expirydate, false);
                                 @endphp
+                                @if($difference < 0)
+                                <span style="color: red" class="time messege-text">Đã hết hạn sử dung </span>
+                                @else
                 <span class="time messege-text">Gần hết hạn !!  <span style="color:rgb(174, 233, 36); font-weight:bold;" >Còn {{$difference}} ngày</span></span>
+                @endif
                 @endif
             <span class="time"> Còn {{ $noti->khohang_soluong }} sản phẩm</span>
                 </span>
@@ -460,6 +491,52 @@ function(isConfirm){
   }
 });
 }
+
+function xacnhan(event) {
+event.preventDefault(); // prevent form submit
+var form = event.target.form; // storing the form
+        swal({
+  title: "Bạn có chắc ?",
+  text: "Thao tác này sẽ đưa trang web vào trạng thái bảo trì",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#DD6B55",
+  confirmButtonText: "Xác Nhận",
+  cancelButtonText: "Từ Từ",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    form.submit();          // submitting the form when user press yes
+  } else {
+    swal("Đã hủy", " Chưa làm gì cả :)", "error");
+  }
+});
+}
+
+function xacnhan2(event) {
+event.preventDefault(); // prevent form submit
+var form = event.target.form; // storing the form
+        swal({
+  title: "Bạn có chắc ?",
+  text: "Thao tác này sẽ đưa trang web vào trạng thái hoạt động",
+  type: "warning",
+  showCancelButton: true,
+  confirmButtonColor: "#7faf51",
+  confirmButtonText: "Xác Nhận",
+  cancelButtonText: "Từ Từ",
+  closeOnConfirm: false,
+  closeOnCancel: false
+},
+function(isConfirm){
+  if (isConfirm) {
+    form.submit();          // submitting the form when user press yes
+  } else {
+    swal("Đã hủy", " Chưa làm gì cả :)", "error");
+  }
+});
+}
   </script>
 
 <script>
@@ -568,6 +645,77 @@ function(isConfirm){
   displayVals();
   </script>
 
+
+<script>
+    
+$.ajaxSetup({
+headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+$(document).ready(function(){
+$('#change-status-web').change(function(e){
+    // ngăn sự kiện change-status này khi click sẽ lan ra các sự kiện khác
+    //thường áp dụng cho các button form hoặc thẻ link ( tag a )
+      e.preventDefault();
+
+      //lấy id nhóm sản phẩm từ thẻ td ( data-id )
+      var id=$(this).parent().parent().data('id');
+      var status=$(this).prop('checked')?1:0;
+
+      //tạo biến global cho element đang click
+      var change=$(this)
+      var content=$(this).parent().find('.content-status')
+      //nếu có id thì mới gửi ajax
+      if(id){
+          $.ajax({
+              //tên route có url là ....
+              url:"{{ route('changeStatus.web') }}",
+              // kiểu method nên là post
+              type:"post",
+
+              //truyền biến id bà status
+              data:{id:id,status:status}
+
+              //nếu gửi thành công
+          }).done(function(result){
+            //nếu k nhận dc id
+              if(result=='error'){
+                  alert("Không nhận được id.");
+              let old= change.prop('checked')?false:true;
+                change.prop('checked',old)
+                  //k cho chạy lệnh bên dưới nhờ return
+                  return;
+              }
+
+
+              //nếu status là 1 ( hiện )
+              if(status==1){
+                  change.prop('checked','checked')
+                  content.text('Đang bật bảo vệ trang web')
+               
+                  //k cho chạy lệnh bên dưới nhờ return
+                  return;
+              }
+              else
+              //nếu status là 0 ( ẩn )
+                 
+                  change.prop('checked','')
+                  content.text('Đang tắt bảo vệ trang web')
+                //nếu gửi thất bại
+          }).fail(function(){
+              let old= change.prop('checked')?false:true;
+                change.prop('checked',old)
+              alert("Xảy ra lỗi từ phía server.");
+          })
+      }
+  })
+}
+)
+
+
+
+</script>
 
 
 </body>

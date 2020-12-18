@@ -66,7 +66,8 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
     <div class="page-contain">
 
        @yield('main')
-
+       
+           
     </div>
 
 
@@ -93,11 +94,177 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
 
     <script src="{{asset('FE')}}/assets/js/typeahead.bundle.min.js"></script>
 
-    <script src="{{asset('FE')}}/assets/js/customs_js/cart_js.js"></script>
+    {{-- <script src="{{asset('FE')}}/assets/js/customs_js/cart_js.js"></script> --}}
     <script src="{{asset('FE')}}/assets/js/customs_js/form_js.js"></script>
     <script src="{{asset('FE')}}/assets/js/customs_js/search_js.js"></script>
-    <script src="{{asset('FE')}}/assets/js/customs_js/sort_js.js"></script>
+
     @yield('js')
+   
+
+    <script>
+      const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    grow:'row',
+    width:'250px',
+    padding:'2.5rem',
+    // background:'#7faf51',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    },
+
+       
+  })
+// JavaScript Cart:
+    function AddCart(id){
+        $.ajax({
+            url: '{{route('index')}}/Add-Cart/'+id,
+            type: 'GET',
+        }).done(function(res) {
+        RenderCart(res);
+            Toast.fire({
+                icon: 'success',
+                title: 'Đã thêm sản phẩm vào giỏ',
+              })
+        });
+      
+    }
+
+
+    $("#change-item-cart").on("click", ".remove i" , function(){
+        $.ajax({
+            url: '{{route('index')}}/Delete-Item-Cart/'+$(this).data("id"),
+            type: 'GET',
+        }).done(function(res) {
+            RenderCart(res);
+            $("#change-item-list-cart").load('gio-hang .shopping-cart-container');
+            
+            Toast.fire({
+                icon: 'error',
+                title: 'Đã xóa sản phẩm'
+              })
+        });
+
+    });
+   
+  function RenderCart(res){
+    $("#total-quanty-show").text($("#total-quanty-cart").val());
+        $("#change-item-cart").empty();
+        $("#render").empty();
+        $("#change-item-cart").html(res);
+    
+  }
+
+  
+  $(".edit-all").on("click", function(){
+    console.log('clicked');
+
+    var lists = [];
+    $("table tbody tr td").each(function(){
+        $(this).find("input").each(function(){
+            var element = {key: $(this).data("id"), value: $(this).val()};
+            lists.push(element);
+        });
+    });
+    $.ajax({
+        url: 'Save-All',
+        type: 'POST',
+        data:{
+            "_token" : "{{ csrf_token() }}" ,
+            "data" : lists
+        }
+    }).done(function(responsive){
+        Toast.fire({
+            icon: 'success',
+            title: 'Đã cập nhật giỏ hàng',
+          })
+        location.reload();
+    });
+  
+});
+    </script>
+
+    <script>
+     $(document).ready(function () {
+       $.get('{{route('index')}}/api/status-web').then(function (response) {
+         if (response.status == 1) {
+           truee();
+         }
+       });
+ 
+     })
+ 
+     function thongbao() {
+       Swal.fire({
+ icon: 'error',
+ title: 'Bị chặn...',
+ text: 'Chức năng chỉ dành cho nhà phát triển',
+ footer: '<a href = {{route('contact')}}>Có thắc mắc? Hãy liên hệ để được hỗ trợ !</a>'
+ })
+ 
+       }
+ 
+   function truee() {
+ 
+     $(window).on('keydown',function(event)
+   {
+   if(event.keyCode==123)
+   {
+     thongbao();
+       return false;
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==73 )
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+i
+   }
+   else if(event.ctrlKey && event.keyCode==73)
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+i
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==67 )
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+c
+   }
+   else if(event.ctrlKey && event.keyCode==67)
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+c
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==85 )
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+u
+   }
+   else if(event.ctrlKey && event.keyCode==85)
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+u
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==74 )
+   {        thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+j
+   }
+   else if(event.ctrlKey && event.keyCode==74)
+   {      thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+j
+   }
+ });
+ $(document).on("contextmenu",function(e)
+ {
+ e.preventDefault();
+ });
+   }
+   </script>
+
 <!-- cust JavaScript -->
 </body>
 

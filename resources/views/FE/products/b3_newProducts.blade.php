@@ -5,52 +5,53 @@
     </div>
     <div class="row">
         <ul class="products-list">
-            
+            @forelse ($new_pro as $n)
             <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
                 <div class="contain-product layout-default">
 
-                    @forelse ($new_pro as $n)
+                
                           <div class="product-thumb">
-                        <a href="#" class="link-to-product">
-                            <img src="{{asset('FE')}}/assets/images/products/p-11.jpg" alt="dd" width="270" height="270" class="product-thumnail">
+                        <a href="{{route('singleproduct',$n->slug_sp)}}" class="link-to-product">
+                        <img src="{{asset('hinhsp')}}/{{$n->img_sp}}" alt="dd" width="270" height="270" class="product-thumnail">
                         </a>
                     </div>
                     <div class="info">
-                        <b class="categories">Fresh Fruit</b>
-                    <h4 class="product-title"><a href="#" class="pr-name">{{$n->name_sp}}</a></h4>
+                    <b class="categories">{{$n->name_loaisp}}</b>
+                    <h4 class="product-title"><a href="{{route('singleproduct',$n->slug_sp)}}" class="pr-name">{{\Illuminate\Support\Str::limit($n->name_sp,30, $end='')}}</a></h4>
                         <div class="price">
                         <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($n->price_sp)}} đ</span></ins>
-                        {{-- <del><span class="price-amount"><span class="currencySymbol">£</span>{{$n->price}}</span></del> --}}
                         </div>
                         <div class="shipping-info">
-                            <p class="shipping-day">3-Day Shipping</p>
-                            <p class="for-today">Pree Pickup Today</p>
+                            <p class="shipping-day">Sản phẩm mới</p>
+                            <p class="for-today">Mua ngay hôm nay</p>
                         </div>
                         <div class="slide-down-box">
-                            <p class="message">All products are carefully selected to ensure food safety.</p>
+                            <p class="message">Tất cả sản phẩm của GreenFresh đều đảm bảo hợp vệ sinh.</p>
                             <div class="buttons">
-                                <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                                <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>add to cart</a>
-                                <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
+                                @if($n->khohang_soluong < 5)
+                                <a href="javascript:0" disabled class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Tạm Hết Hàng</a>
+                                @else
+                                <a href="javascript:0" onclick="AddCart({{$n->id_sanpham}})" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Thêm Vào Giỏ</a>
+                                @endif
                             </div>
                         </div>
                     </div>
 
                     @empty
                         <i>Không có sản phẩm...</i>
-                    @endforelse
+                  
                   
 
                 </div>
             </li>
-
+            @endforelse
 
         </ul>
     </div>
     <!-- Paginate of new products-->
     <div class="biolife-panigations-block">
         <ul class="panigation-contain">
-            
+            {!! $new_pro->links() !!}}
         </ul>
     </div>
 </div>

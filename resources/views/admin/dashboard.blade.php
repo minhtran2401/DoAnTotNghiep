@@ -97,6 +97,44 @@
       </div>
     </div>
     <div class="row">
+      <div class="col-12 col-sm-12 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h4>Top 20 sản phẩm bán chạy</h4>
+          </div>
+          <div class="card-body">
+            <div id="sanphambanchay" class="chartsh"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-lg-6">
+        <div class="card">
+          <div class="card-header">
+            <h4>Top khách hàng tiềm năng</h4>
+          </div>
+          <div class="card-body">
+            <div class="summary">
+              <div class="summary-chart active" data-tab-group="summary-tab" id="summary-chart">
+                <div id="khachhangtiemnang" class="chartsh"></div>
+              </div>
+              <div data-tab-group="summary-tab" id="summary-text">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{-- <div class="col-12 col-sm-12 col-lg-4">
+        <div class="card">
+          <div class="card-header">
+            <h4>Thống kê hàng tồn kho</h4>
+          </div>
+          <div class="card-body">
+            <div id="chart2" class="chartsh"></div>
+          </div>
+        </div>
+      </div> --}}
+    </div>
+    <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
         <div class="card">
           <div class="card-header">
@@ -110,44 +148,7 @@
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <h4>Chart</h4>
-          </div>
-          <div class="card-body">
-            <div id="chart4" class="chartsh"></div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <h4>Chart</h4>
-          </div>
-          <div class="card-body">
-            <div class="summary">
-              <div class="summary-chart active" data-tab-group="summary-tab" id="summary-chart">
-                <div id="chart3" class="chartsh"></div>
-              </div>
-              <div data-tab-group="summary-tab" id="summary-text">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-12 col-sm-12 col-lg-4">
-        <div class="card">
-          <div class="card-header">
-            <h4>Chart</h4>
-          </div>
-          <div class="card-body">
-            <div id="chart2" class="chartsh"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+   
     <div class="row">     
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-12">
         <div class="card">

@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use DB;
 use Carbon\Carbon;
 use Auth;
+use App\SanPham;
  class TabComposer
  {
      /**
@@ -52,7 +53,7 @@ use Auth;
         
 
         // menu FE       
-        $view->with('getgroup', DB::table('nhomsp')->where('Anhien',1)->limit(4)->get());
+        $view->with('getgroup', DB::table('nhomsp')->where('Anhien',1)->orderby('id_nhomsp','desc')->get());
 
         //blog menu    
         $view['blognew'] = Blog::with('ktloaiblog')->join('loaiblog','loaiblog.id_loaiblog','blog.id_loaiblog')->where('blog.Anhien',1)->orderby('id_blog','desc')->limit(3)->get();
@@ -131,5 +132,23 @@ use Auth;
        ->paginate(5);
        
         }
+         // protect website
+        
+      $view['nof12'] = DB::table('protectweb')->where('id',1)->first();
+      $view['baotri'] = DB::table('protectweb')->where('id',2)->first();
+
+         //session san pham vua xem
+         if(session('products.recently_viewed')){
+         $products = session()->get('products.recently_viewed');
+         $view->with([
+             'recentlyViewed' => SanPham::whereIn('id_sanpham', $products)->orderBy('created_at', 'desc')->take('7')->get(),
+         ]);
+        }
+        else{
+            $view['recentlyViewed'] = null;
+        }
+        
      }
+
+   
  }

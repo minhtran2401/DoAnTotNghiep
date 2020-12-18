@@ -52,11 +52,11 @@
         </div>
         <div class="flt-item to-right">
             <form action="#" name="softProducts" id="softProducts" method="get">
-                <span class="flt-title">Sort</span>
+                <span class="flt-title">Sắp xếp</span>
                 <div class="wrap-selectors">
                     <div class="selector-item orderby-selector">
                         <select name="sort" id="sort" class="orderby" aria-label="Shop order">
-                            <option value="" selected="selected">Select</option>
+                            <option value="" selected="selected">Chọn</option>
                             <option value="product_latest" @if(isset($_GET['sort']) && $_GET['sort']=="product_latest") selected="" @endif>
                             Sản phẩm mới nhất</option>
                             <option value="product_name_a_z" @if(isset($_GET['sort']) && $_GET['sort']=="product_name_a_z") selected="" @endif>
