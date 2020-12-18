@@ -6,7 +6,7 @@
         <li>
             <div class="price-less">
                 <span class="desc">Tạm tính</span>
-                <span class="cost">xxx.000 đ</span>
+                <span class="cost">100.000 đ</span>
             </div>
         </li>
         <li>
@@ -18,7 +18,7 @@
         <li>
             <div class="price-less sum">
                 <span class="desc">Tổng cộng</span>
-                <span class="cost">xxx.000 đ</span>
+                <span class="cost">75.000 đ</span>
             </div>
         </li>
     </ul>

@@ -155,7 +155,7 @@ $agent->robot();
     }
 
     // single product:
-    public function singleproduct($id){
+    public function singleproduct(Request $request, $id){
         $sp = SanPham::where('slug_sp', $id)
         ->join('nhacungcap','nhacungcap.id_thuonghieu','sanpham.id_thuonghieu')
         ->join('donvitinh','donvitinh.id_donvitinh','sanpham.id_donvitinh')
@@ -163,7 +163,9 @@ $agent->robot();
         ->join('nhomsp','nhomsp.id_nhomsp','sanpham.id_nhomsp')
         ->firstOrFail();
 
-        
+        session()->push('products.recently_viewed', $sp->getKey());
+
+    //  dd($request);
 
 
         $hinh = HinhSanPham::join('sanpham','sanpham.id_sanpham','imgchitiet.id_sanpham')->where('sanpham.slug_sp',$id)->orderby('sanpham.id_sanpham','desc')->limit(15)->get();
@@ -171,7 +173,7 @@ $agent->robot();
         ->join('nhomsp','nhomsp.id_nhomsp','sanpham.id_nhomsp')
         ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
         ->get();
-        return view('FE.single_product.index', compact('sp','hinh','splq'));
+        return view('FE.single_product.index', compact('sp','hinh','splq',));
     }
 
     // blog:

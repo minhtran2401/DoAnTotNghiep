@@ -17,7 +17,7 @@
                     </div>
                     <div class="info">
                     <b class="categories">{{$n->name_loaisp}}</b>
-                    <h4 class="product-title"><a href="{{route('singleproduct',$n->slug_sp)}}" class="pr-name">{{$n->name_sp}}</a></h4>
+                    <h4 class="product-title"><a href="{{route('singleproduct',$n->slug_sp)}}" class="pr-name">{{\Illuminate\Support\Str::limit($n->name_sp,30, $end='')}}</a></h4>
                         <div class="price">
                         <ins><span class="price-amount"><span class="currencySymbol"></span>{{number_format($n->price_sp)}} đ</span></ins>
                         </div>
