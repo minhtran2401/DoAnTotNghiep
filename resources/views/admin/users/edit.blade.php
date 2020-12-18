@@ -29,23 +29,35 @@
                     <div class="form-group row" >
 
                       <div class="form-group col-md-6">
-                      <input type="text" class="form-control" value="{{$row->name}}" placeholder="Họ Và Tên" name="name" required>
+                      <input type="text" class="form-control" value="{{$row->name}}" placeholder="Họ Và Tên" name="name">
+                      @foreach($errors->get('name') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                     </div>
 
                     <div class="form-group col-md-6">
-                    <input type="email" class="form-control" placeholder="Email" value="{{$row->email}}" name="email" required>
+                    <input type="text" class="form-control" placeholder="Email" value="{{$row->email}}" name="email">
+                    @foreach($errors->get('email') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                     </div>
 
                     <div class="form-group col-md-6">
                       <label for="phone">Số điện thoại</label>
-                    <input type="text" class="form-control" value="{{$row->phone}}"  placeholder="Số điện thoại" name="phone" required>
+                    <input type="text" class="form-control" value="{{$row->phone}}"  placeholder="Số điện thoại" name="phone">
+                    @foreach($errors->get('phone') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                     </div>
 
                 
 
                     <div class="form-group col-md-6">
-                      <label for="avatar">Mật khẩu</label>
-                    <input type="password" class="form-control" id="password" value="{{md5($row->password)}}" placeholder="Mật Khẩu" name="password" required>
+                      <label for="">Mật khẩu</label>
+                    <input type="password" class="form-control" id="password" value="{{md5($row->password)}}" placeholder="Mật Khẩu" name="password">
+                    @foreach($errors->get('password') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                     </div>
 
 
@@ -57,7 +69,10 @@
                     
                     <div class="form-group col-md-6">
                       <label for="address">Địa Chỉ</label>
-                    <input type="text" class="form-control" value="{{$row->address}}"  placeholder="Địa Chỉ" name="address" required>
+                    <input type="text" class="form-control" value="{{$row->address}}"  placeholder="Địa Chỉ" name="address">
+                    @foreach($errors->get('address') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                     </div>
 
 

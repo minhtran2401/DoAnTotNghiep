@@ -24,14 +24,14 @@ class RequestDonViTinh extends FormRequest
     public function rules()
     {
         return [
-            'name_donvi'=>'required|max:90',
+            'name_donvi'=>'required|max:60',
         ];
     }
 
     public function messages() {
         return [    
              'name_donvi.required' => ':attribute không được bỏ trống',
-             'name_donvi.max' => ':attribute không quá 90 kí tự', 
+             'name_donvi.max' => ':attribute không quá 60 kí tự', 
             ];
       }
 

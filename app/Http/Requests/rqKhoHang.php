@@ -28,7 +28,7 @@ class rqKhoHang extends FormRequest
             'khohang_soluong'=>'required',
             'khohang_donvi'=>'required',
             'khohang_ngaynhap'=>'required',
-            // 'khohang_hsd'=>'required',
+            'khohang_hsd'=>'required',
             // 'khohang_trangthai'=>'required',
         ];
     }
@@ -41,7 +41,7 @@ class rqKhoHang extends FormRequest
              'khohang_soluong.required' => 'Số lượng không được để trống',
              'khohang_ngaynhap.required' => 'Ngày nhập không được để trống',
              'khohang_hsd.required' => 'Hạn sử dụng không được để trống',
-             'khohang_trangthai.required' => 'Trạng thái không được để trống',
+            //  'khohang_trangthai.required' => 'Trạng thái không được để trống',
         ];
       }
 

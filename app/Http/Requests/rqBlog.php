@@ -25,10 +25,11 @@ class rqBlog extends FormRequest
     {
         return [
             'id_loaiblog'=>'required',
-            'img_blog'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img_blog'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'tomtat_blog'=>'required|max:255',
             'name_blog'=>'required|max:90',
             'noidung_blog'=>'required',
+            'tag_blog'=>'required',
         ];
     }
 
@@ -43,7 +44,8 @@ class rqBlog extends FormRequest
              'img_blog.required' => 'Hình không được bỏ trống',
              'img_blog.image' => 'Đây không phải là hình ảnh',
              'img_blog.mimes' => 'Không đúng định dạng ảnh',
-             'img_blog.max' => 'Hình không quá 2048 kí tự',
+             'img_blog.max' => 'Liên kết ảnh không quá 1024 kí tự',
+             'tag_blog.required' => 'Tag không được bỏ trống',
         ];
       }
 

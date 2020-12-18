@@ -25,7 +25,7 @@ class RequestLoaiSanPham extends FormRequest
     {
         return [
             'name_loaisp'=>'required|max:60',
-            'icon_loaisp'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'icon_loaisp'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
             'id_nhomsp'=>'required|max:50',
 
         ];
@@ -38,9 +38,9 @@ class RequestLoaiSanPham extends FormRequest
              'icon_loaisp.required' => 'Hình không được bỏ trống',
              'icon_loaisp.image' => 'Đây không phải là hình ảnh',
              'icon_loaisp.mimes' => 'Không đúng định dạng ảnh',
-             'icon_loaisp.max' => 'Link hình ảnh giới hạn 2048 kí tự',
+             'icon_loaisp.max' => 'Link hình ảnh giới hạn 1024 kí tự',
              'id_nhomsp.required' => ':attribute không được bỏ trống',
-             'id_nhomsp.max' => ':attribute không quá 50 kí tự',
+             'id_nhomsp.max' => ':attribute không quá 60 kí tự',
         ];
       }
 

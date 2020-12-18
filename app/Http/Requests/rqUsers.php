@@ -13,7 +13,7 @@ class rqUsers extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,28 @@ class rqUsers extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'=>'required|max:90',
+            'email'=>'required|max:90|email',
+            'phone'=>'required|size:10',
+            'password'=>'required|max:60',
+            'address'=>'required|max:255',
         ];
     }
+
+    public function messages() {
+        return [    
+            'name.required'=>'Tên không được để trống',
+            'name.max'=>'Tên không quá 90 kí tự',
+            'email.required'=>'Email không được để trống',
+            'email.max'=>'Email không dài quá 90 kí tự',
+            'email.email'=>'Email phải đúng định dạng',
+            'phone.required'=>'Số điện thoại không được bỏ trống',
+            'phone.size'=>'Số điện thoại phải 10 chữ số',
+            'password.required'=>'Mật khẩu không được để trống',
+            'password.max'=>'Mật khẩu không vượt quá 60 kí tự',
+            'address.required'=>'Địa chỉ không được để trống',
+            'address.max'=>'Mật khẩu không vượt quá 255 kí tự',
+        ];
+      }
+
 }

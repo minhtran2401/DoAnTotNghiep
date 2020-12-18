@@ -84,7 +84,7 @@ class ThuongHieuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestThuongHieu $request, $id)
     {
         $th = ThuongHieu ::find($id);
         $fileimg = $request->file('img_thuonghieu'); // tạo biến lấy dữ liệu từ input

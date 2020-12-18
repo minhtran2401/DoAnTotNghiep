@@ -55,7 +55,7 @@ class SanPhamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RequestSanPham $request)
     
     { 
         
@@ -156,7 +156,7 @@ class SanPhamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RequestSanPham $request, $id)
     {
         $sp = SanPham ::find($id);
         $fileimg = $request->file('img_sp'); // tạo biến lấy dữ liệu từ input
