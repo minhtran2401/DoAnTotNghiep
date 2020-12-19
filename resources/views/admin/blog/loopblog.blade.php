@@ -71,7 +71,9 @@
                                 $id =$row->id;
                                 $tl = \App\Models\User::find($id);
                                 echo $tl->name;
-                              @endphp</div>
+                              @endphp
+
+                              </div>
                             </td>
                             <td>
                                

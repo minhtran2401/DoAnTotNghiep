@@ -63,10 +63,10 @@ class LoginController extends Controller
 }
 public function loginadmin(Request $request){
     $this->validate($request, [
-    'email' => 'required|email',
+    'email' => 'required|email|unique',
     'password' => 'required',
     ]);
- 
+    
         if(\Auth::attempt([
             'email' => $request->email,
             'password' => $request->password]))

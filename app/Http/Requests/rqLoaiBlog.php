@@ -28,16 +28,16 @@ class rqLoaiBlog extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-            'name_loaiblog.required' => ':attribute không được để trống',
-            'name_loaiblog.max' => ':attribute không quá 60 kí tự',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //         'name_loaiblog.required' => ':attribute không được để trống',
+    //         'name_loaiblog.max' => ':attribute không quá 60 kí tự',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-            'name_loaiblog'=>'Tên loại blog',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //         'name_loaiblog'=>'Tên loại blog',
+    //    ];
+    //  }
 }

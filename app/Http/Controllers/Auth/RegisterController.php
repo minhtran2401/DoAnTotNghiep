@@ -82,8 +82,8 @@ class RegisterController extends Controller
     // public function messages() {
     //     return [    
     //         'email.email' => 'Email không đúng định dạng, hãy nhập lại !',
-    //          'email.unique' => 'Email này đã được sử dụng !',
-    //          'email.required' => 'Chưa nhập email !',
+    //         'email.unique' => 'Email này đã được sử dụng !',
+    //         'email.required' => 'Chưa nhập email !',
     //     ];
     //   }
 

@@ -32,16 +32,16 @@
                                 @csrf
                             <p class="form-row">
                                 <label for="email">Email:<span class="requite">*</span></label>
-                                <input type="text" id="email" name="email" value="{{ old('email') }}" class="txt-input  @error('email') is-invalid @enderror" required autocomplete="email" autofocus>
+                                <input type="text" id="email" name="email" value="{{ old('email') }}" class="txt-input  @error('email') is-invalid @enderror" autocomplete="email" autofocus>
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
+                                <span class="invalid-feedback" name="email" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                             </p>
                             <p class="form-row">
                                 <label for="password">Mật Khẩu:<span class="requite">*</span></label>
-                                <input type="password" id="password" name="password" required autocomplete="current-password" class="txt-input  @error('password') is-invalid @enderror">
+                                <input type="password" id="password" name="password" autocomplete="current-password" class="txt-input  @error('password') is-invalid @enderror">
                                 @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

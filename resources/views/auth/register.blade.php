@@ -40,7 +40,7 @@
                     <div class="row">
                     <p class="form-row col-md-6">
                         <label for="name">Họ Và Tên : <span class="requite">*</span></label>
-                        <input type="text" id="name" name="name" class="txt-input @error('name') is-invalid @enderror" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                        <input type="text" id="name" name="name" class="txt-input @error('name') is-invalid @enderror" value="{{ old('name') }}"  autocomplete="name" autofocus>
                         @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                     </p>
                     <p class="form-row col-md-6">
                         <label for="address">Địa Chỉ : <span class="requite">*</span></label>
-                        <input type="text" id="address" name="address"  class="txt-input @error('address') is-invalid @enderror" value="{{ old('address') }}" required autocomplete="address" autofocus>
+                        <input type="text" id="address" name="address"  class="txt-input @error('address') is-invalid @enderror" value="{{ old('address') }}"  autocomplete="address" autofocus>
                         @error('address')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -60,7 +60,7 @@
                 <div class="row">
                     <p class="form-row col-md-6 ">
                         <label for="phone">Số Điện Thoại : <span class="requite">*</span></label>
-                        <input type="text" id="phone" name="phone" class="txt-input @error('phone') is-invalid @enderror" value="{{ old('phone') }}" required autocomplete="phone">
+                        <input type="text" id="phone" name="phone" class="txt-input @error('phone') is-invalid @enderror" value="{{ old('phone') }}"  autocomplete="phone">
                         @error('phone')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -69,7 +69,7 @@
                     </p>
                     <p class="form-row col-md-6">
                         <label for="email">Địa Chỉ Email : <span class="requite">*</span></label>
-                        <input type="text" id="email" name="email"   class="txt-input @error('email') is-invalid @enderror" value="{{ old('email') }}" required autocomplete="email" >
+                        <input type="text" id="email" name="email"   class="txt-input @error('email') is-invalid @enderror" value="{{ old('email') }}"  autocomplete="email" >
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -80,7 +80,7 @@
                 <div class="row">
                     <p class="form-row col-md-6">
                         <label for="pass">Mật Khẩu :<span class="requite">*</span></label>
-                        <input type="password" id="pass" name="password" class="txt-input @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                        <input type="password" id="pass" name="password" class="txt-input @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                     </p>
                     <p class="form-row col-md-6">
                         <label for="password-confirm">Nhập Lại Mật Khẩu : <span class="requite">*</span></label>
-                        <input id="password-confirm" type="password" class="txt-input" name="password_confirmation" required autocomplete="new-password">
+                        <input id="password-confirm" type="password" class="txt-input" name="password_confirmation"  autocomplete="new-password">
                     </p>
                 </div>
                     <p class="form-row wrap-btn">
