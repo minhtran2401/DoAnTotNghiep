@@ -93,7 +93,7 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(rqBlog $request, $id)
+    public function update(Request $request, $id)
     {
         $lt = Blog ::find($id);
         $fileimg = $request->file('hinh_blog'); // tạo biến lấy dữ liệu từ input

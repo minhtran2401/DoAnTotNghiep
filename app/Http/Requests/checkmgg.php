@@ -25,20 +25,19 @@ class checkmgg extends FormRequest
     {
         return [
             'counpon_code'=>'required|max:50|unique:counpon,counpon_code',
-
         ];
     }
 
-    public function messages() {
-        return [    
-             'counpon_code.unique' => ':attribute đã tồn tại trong hệ thống, hãy nhập mã khác',
-             'counpon_code.required' => 'Chưa Nhập Mã Khuyến Mãi',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'counpon_code.unique' => ':attribute đã tồn tại trong hệ thống, hãy nhập mã khác',
+    //          'counpon_code.required' => 'Chưa Nhập Mã Khuyến Mãi',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'counpon_code' => 'Mã khuyến mãi',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'counpon_code' => 'Mã khuyến mãi',
+    //    ];
+    //  }
 }

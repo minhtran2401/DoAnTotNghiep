@@ -69,7 +69,6 @@
                             <label for="name_nhomsp">Nhóm Sản Phẩm</label>
                             <select  name="id_nhomsp" class="form-control">
                               <option value="0">---NHÓM SẢN PHẨM---</option>
-                              
                                   @foreach ($nhomsp as $nhomsp)
                                   <option value='{{$nhomsp->id_nhomsp}}'>{{$nhomsp->name_nhomsp}}</option>  
                                   @endforeach
@@ -156,10 +155,16 @@
                         <div class="form-group col-md-6">
                           <label for="motangan_sp"> Mô Tả Ngắn Của Sản Phẩm </label>
                           <textarea class="summernote" name="motangan_sp" id="" ></textarea>
+                          @foreach($errors->get('motangan_sp') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                         </div>
                         <div class="form-group col-md-6">
                           <label for="motadai_sp"> Mô Tả Chi Tiết Của Sản Phẩm </label>
                           <textarea class="summernote" name="motadai_sp" id=""></textarea>
+                          @foreach($errors->get('motadai_sp') as $error)
+                              <span class="badge badge-danger">{{ $error }}</span>
+                            @endforeach
                         </div>
 
                         <div class="form-group col-md-4"> 

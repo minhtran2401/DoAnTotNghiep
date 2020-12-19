@@ -31,23 +31,23 @@ class RequestLoaiSanPham extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-             'name_loaisp.required' => ':attribute không được bỏ trống',
-             'name_loaisp.max' => ':attribute không quá 60 kí tự',
-             'icon_loaisp.required' => 'Hình không được bỏ trống',
-             'icon_loaisp.image' => 'Đây không phải là hình ảnh',
-             'icon_loaisp.mimes' => 'Không đúng định dạng ảnh',
-             'icon_loaisp.max' => 'Link hình ảnh giới hạn 1024 kí tự',
-             'id_nhomsp.required' => ':attribute không được bỏ trống',
-             'id_nhomsp.max' => ':attribute không quá 60 kí tự',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'name_loaisp.required' => ':attribute không được bỏ trống',
+    //          'name_loaisp.max' => ':attribute không quá 60 kí tự',
+    //          'icon_loaisp.required' => 'Hình không được bỏ trống',
+    //          'icon_loaisp.image' => 'Đây không phải là hình ảnh',
+    //          'icon_loaisp.mimes' => 'Không đúng định dạng ảnh',
+    //          'icon_loaisp.max' => 'Link hình ảnh giới hạn 1024 kí tự',
+    //          'id_nhomsp.required' => ':attribute không được bỏ trống',
+    //          'id_nhomsp.max' => ':attribute không quá 60 kí tự',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'name_loaisp' => 'Tên loại sản phẩm',
-           'id_nhomsp' => 'Nhóm sản phẩm',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'name_loaisp' => 'Tên loại sản phẩm',
+    //        'id_nhomsp' => 'Nhóm sản phẩm',
+    //    ];
+    //  }
 }

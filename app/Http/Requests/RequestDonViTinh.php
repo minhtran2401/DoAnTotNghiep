@@ -28,16 +28,16 @@ class RequestDonViTinh extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-             'name_donvi.required' => ':attribute không được bỏ trống',
-             'name_donvi.max' => ':attribute không quá 60 kí tự', 
-            ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'name_donvi.required' => ':attribute không được bỏ trống',
+    //          'name_donvi.max' => ':attribute không quá 60 kí tự', 
+    //         ];
+    //   }
 
-      public function attributes(){
-        return [
-           'name_donvi' => 'Tên đơn vị',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'name_donvi' => 'Tên đơn vị',
+    //    ];
+    //  }
 }

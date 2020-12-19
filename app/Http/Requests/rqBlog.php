@@ -33,29 +33,29 @@ class rqBlog extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-             'id_loaiblog.required' => ':attribute không được bỏ trống',
-             'tomtat_blog.required' => ':attribute không được bỏ trống',
-             'name_blog.required' => ':attribute không được bỏ trống',
-             'name_blog.max' => ':attribute không quá 90 kí tự',
-             'noidung_blog.required' => ':attribute không được bỏ trống',
-             'tomtat_blog.max' => ':attribute không quá 255 kí tự',
-             'img_blog.required' => 'Hình không được bỏ trống',
-             'img_blog.image' => 'Đây không phải là hình ảnh',
-             'img_blog.mimes' => 'Không đúng định dạng ảnh',
-             'img_blog.max' => 'Liên kết ảnh không quá 1024 kí tự',
-             'tag_blog.required' => 'Tag không được bỏ trống',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'id_loaiblog.required' => ':attribute không được bỏ trống',
+    //          'tomtat_blog.required' => ':attribute không được bỏ trống',
+    //          'name_blog.required' => ':attribute không được bỏ trống',
+    //          'name_blog.max' => ':attribute không quá 90 kí tự',
+    //          'noidung_blog.required' => ':attribute không được bỏ trống',
+    //          'tomtat_blog.max' => ':attribute không quá 255 kí tự',
+    //          'img_blog.required' => 'Hình không được bỏ trống',
+    //          'img_blog.image' => 'Đây không phải là hình ảnh',
+    //          'img_blog.mimes' => 'Không đúng định dạng ảnh',
+    //          'img_blog.max' => 'Liên kết ảnh không quá 1024 kí tự',
+    //          'tag_blog.required' => 'Tag không được bỏ trống',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-            'id_loaiblog'=>'Loại blog',
-            'tomtat_blog'=>'Tóm tắt',
-            'name_blog'=>'Tên blog',
-            'img_blog'=>'Hình ảnh',
-            'noidung_blog'=>'Nội dung',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //         'id_loaiblog'=>'Loại blog',
+    //         'tomtat_blog'=>'Tóm tắt',
+    //         'name_blog'=>'Tên blog',
+    //         'img_blog'=>'Hình ảnh',
+    //         'noidung_blog'=>'Nội dung',
+    //    ];
+    //  }
 }
