@@ -58,11 +58,15 @@ Route::get('/search-sp', [App\Http\Controllers\PageController::class, 'searchsub
 
 //ajax lọc nhóm sp
 Route::post('/loc-thuong-hieu', [App\Http\Controllers\PageController::class, 'searchbrand'])->name('locthuonghieu');
+Route::post('/pro-filter', [App\Http\Controllers\PageController::class, 'profilter'])->name('profilter');
+
 
 // ajax lọc sản phẩm theo giá ( 2 button )
 // Route::get('/paginate-san-pham', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gias');
 Route::post('/loc-theo-gia/', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gia');
 // Route::get('/loc-theo-gia/*', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gia');
+
+
 
 
 

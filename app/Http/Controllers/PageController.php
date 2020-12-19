@@ -495,6 +495,21 @@ public function searchbrand(Request $request)
 
   }
 
+  public function profilter(Request $request)
+{
+    // $categories = \Input::get('id_thuonghieu');
+    $id_thuonghieu = $request->input('id_thuonghieu');
+    $id_nhomsp = $request->input('id_nhomsp');
+    $id_loaisp = $request->input('id_loaisp');
+    $filter = SanPham::where('id_thuonghieu', $id_thuonghieu)
+    ->Orwhere('id_loaisp',$id_loaisp)
+    ->Orwhere('id_nhomsp',$id_nhomsp)
+    ->orderby('id_sanpham','desc')
+    ->get();
+    return view('FE.products.render_filter', compact('filter'));
+
+  }
+
 // tìm sản phẩm theo giá 2 nút nhập
 public function search2gia(Request $request){
   

@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('FE')}}/assets/images/favicon.png" />
+    <link rel="stylesheet" href="{{asset('FE')}}/assets/css/jquery-ui.css">
     <link rel="stylesheet" href="{{asset('FE')}}/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('FE')}}/assets/css/animate.min.css">
     <link rel="stylesheet" href="{{asset('FE')}}/assets/css/font-awesome.min.css">
@@ -26,6 +27,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src='https://www.google.com/recaptcha/api.js'></script> --}}
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 
@@ -110,6 +112,8 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
     <script src="{{asset('FE')}}/assets/js/slick.min.js"></script>
     <script src="{{asset('FE')}}/assets/js/biolife.framework.js"></script>
     <script src="{{asset('FE')}}/assets/js/functions.js"></script>
+    <script src="{{asset('FE')}}/assets/js/jquery-ui.js"></script>
+
 
     <script src="{{asset('FE')}}/assets/js/typeahead.bundle.min.js"></script>
 

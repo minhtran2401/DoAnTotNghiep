@@ -86,6 +86,8 @@ $('#price-filter').on('submit', function (event){
 </script>   
 
 
+
+
     @endsection
     
 @endif
