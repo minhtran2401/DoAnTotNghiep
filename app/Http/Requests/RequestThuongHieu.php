@@ -25,9 +25,9 @@ class RequestThuongHieu extends FormRequest
     {
         return [
             'name_thuonghieu'=>'required|max:90',
-            'sdt_thuonghieu'=>'required',
+            'sdt_thuonghieu'=>'required|size:10',
             'link_thuonghieu'=>'required|max:255',
-            'img_thuonghieu'=>'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            // 'img_thuonghieu'=>'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:1024',
 
         ];
     }
@@ -38,11 +38,10 @@ class RequestThuongHieu extends FormRequest
              'name_thuonghieu.max' => ':attribute không được quá 60 kí tự',
              'img_thuonghieu.required' => 'Hình không được bỏ trống',
              'img_thuonghieu.image' => 'Đây không phải là hình ảnh',
-             'img_thuonghieu.max' => 'Hình ảnh không quá 2048 kí tự',
+             'img_thuonghieu.max' => 'Hình ảnh không quá 1024 kí tự',
              'img_thuonghieu.mimes' => 'Không đúng định dạng ảnh',
-             'sdt_thuonghieu.required' => ':attribute không được để trống',
-             'sdt_thuonghieu.integer' => ':attribute phải là số',
-             'sdt_thuonghieu.size' => ':attribute không được quá 10 kí tự',
+             'sdt_thuonghieu.required' => ':attribute không được` để trống',
+             'sdt_thuonghieu.size' => ':attribute phải đúng 10 chữ số',
              'link_thuonghieu.required' => ':attribute không được để trống',
              'link_thuonghieu.size' => ':attribute không được quá 255 kí tự',
         ];

@@ -9,6 +9,5 @@ class Sns extends Model
         'id',
         'snsicon',
         'snslink',
-        'snsname',
     ];
 }

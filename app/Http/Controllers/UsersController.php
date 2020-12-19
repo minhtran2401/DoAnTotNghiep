@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Users;
 use Hash;
 use Illuminate\Http\Request;
+use App\Http\Requests\rqUsers;
 class UsersController extends Controller
 {
     /**
@@ -33,7 +34,7 @@ class UsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(rqUsers $request)
     {
         $fileimg = $request->file('avatar'); // tạo biến lấy dữ liệu từ input
         $filename = $fileimg->getClientOriginalName(); // lấy tên theo tên gốc của file
@@ -83,7 +84,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(rqUsers $request, $id)
     {
         $us = Users::find($id);
         $fileimg = $request->file('avatar'); // tạo biến lấy dữ liệu từ input

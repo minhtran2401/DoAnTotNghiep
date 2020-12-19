@@ -25,7 +25,7 @@ class rqSocial extends FormRequest
     {
         return [
             'snslink'=>'required|max:255',
-            'snsicon'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'snsicon'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
 
         ];
     }
@@ -37,7 +37,7 @@ class rqSocial extends FormRequest
              'snsicon.required' => 'Hình không được bỏ trống',
              'snsicon.image' => 'Đây không phải là hình ảnh',
              'snsicon.mimes' => 'Không đúng định dạng ảnh',
-             'snsicon.max' => 'Hình không quá 2048 kí tự',
+             'snsicon.max' => 'Hình không quá 1024 kí tự',
         ];
       }
 

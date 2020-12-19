@@ -11,9 +11,9 @@
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     }
-});
-$("#table-1").on("click", ".change-status", function(e){
-// $(document).ready(function(){
+    });
+    $("#table-1").on("click", ".change-status", function(e){
+    // $(document).ready(function(){
     $('.change-status').change(function(e){
         // ngăn sự kiện change-status này khi click sẽ lan ra các sự kiện khác
         //thường áp dụng cho các button form hoặc thẻ link ( tag a )

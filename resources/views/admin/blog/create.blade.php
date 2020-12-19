@@ -71,7 +71,10 @@
 
                       <div class="form-group col-md-12">
                         <label for="Tag">Tag</label>
-                          <input type="text" class="form-control " placeholder="Các tag ngăn cách nhau bời dấu phẩy"  name="tag_blog" >
+                          <input type="text" class="form-control " placeholder="Các tag ngăn cách nhau bời dấu phẩy"  name="tag_blog">
+                          @foreach($errors->get('tag_blog') as $error)
+                        <span class="badge badge-danger">{{ $error }}</span> 
+                      @endforeach
                       </div>
 
                       
