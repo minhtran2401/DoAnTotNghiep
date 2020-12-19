@@ -39,5 +39,53 @@
         </div>
     </div> 
     @endsection
+    @section('js')
+     <script>
+        $.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  }
+});
+ $(document).ready(function () {
+var id_thuonghieu = [];
+var id_loaisp = $("#cay-vl").val();
+// Listen for 'change' event, so this triggers when the user clicks on the checkboxes labels
+$('input[name="cat[]"]').on('change', function (e) {
+    e.preventDefault();
+    id_thuonghieu = []; // reset 
+    $('input[name="cat[]"]:checked').each(function()
+    {
+        id_thuonghieu.push($(this).val());
+    });
+    
+    $.post('{{route('locthuonghieu')}}', {id_thuonghieu: id_thuonghieu,id_loaisp: id_loaisp, _token: '{{csrf_token()}}'}, function(markup){
+        
+        $('#search-brand-results').html(markup);
+    });            
+});
+
+});
+
+$('#price-filter').on('submit', function (event){
+    event.preventDefault();
+    var form_element = this;
+    var formData = new FormData(form_element);
+
+    $.ajax({
+        url: $(this).attr('action'),
+        method: "post",
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function(response) {
+            $('#render-price-button').html(response.html);
+        }
+    });
+});  
+</script>   
+
+
+    @endsection
     
 @endif

@@ -1,12 +1,11 @@
 <!-- Sản Phẩm Mới Nhất -->
-<div id="render-price-button">
-<div  id="search-brand-results"  class="product-category grid-style">
+<div   class="product-category grid-style">
     <div style="margin-bottom: 15px" class="header">
-        Sản Phẩm Mới Nhất
+        Sản Phẩm Đã Lọc
     </div>
     <div class="row">
         <ul class="products-list">
-            @forelse ($new_pro as $n)
+            @forelse ($sanphamprice as $n)
             <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
                 <div class="contain-product layout-default">
 
@@ -49,11 +48,5 @@
 
         </ul>
     </div>
-    <!-- Paginate of new products-->
-    <div class="biolife-panigations-block">
-        <ul class="panigation-contain">
-            {!! $new_pro->links() !!}}
-        </ul>
-    </div>
-</div>
+
 </div>

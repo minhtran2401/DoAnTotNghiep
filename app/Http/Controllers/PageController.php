@@ -26,6 +26,7 @@ use Jenssegers\Agent\Agent;
 use App\TuyenDung;
 use Cookie;
 use Cache;
+use Input;
 
 
 class PageController extends Controller
@@ -265,7 +266,7 @@ $agent->robot();
             $message->to('contactgreenfresh@gmail.com', 'Admin')->subject('CỬA HÀNG GREENFRESH');
         });
 
-        // này ông viết 1 cái mới nha, quy ước trùng email thì tạo mới hay thế nào đó:
+     
         // $regemail = new RegEmail([
         //     'email' => $request->get('email')
         // ]);
@@ -356,14 +357,14 @@ $agent->robot();
     public function searchsubmited(Request $request)
     {
         // dd($request->all());
-        $kq = DB::table('sanpham');
+        $ketquatim = DB::table('sanpham');
         if ($request->get('category') == 0) {
-            $kq = $kq;
+            $ketquatim = $ketquatim;
         } else {
-            $kq = $kq->where('id_loaisp', $request->get('category'));
+            $ketquatim = $ketquatim->where('id_loaisp', $request->get('category'));
         }
-        $kq = $kq->where('name_sp', 'like', '%' . $request->get('q') . '%')->orWhere('price_sp', 'like', '%' . $request->get('q') . '%')->where('Anhien',1)->orderby('id_sanpham','desc')->paginate(6);
-        return view('FE.products.search_products', compact('kq'));
+        $ketquatim = $ketquatim->where('name_sp', 'like', '%' . $request->get('q') . '%')->orWhere('price_sp', 'like', '%' . $request->get('q') . '%')->where('Anhien',1)->orderby('id_sanpham','desc')->paginate(21);
+        return view('FE.products.search_products', compact('ketquatim'));
     }
 
     function changeStatusWeb(Request $request){
@@ -479,8 +480,38 @@ public function start(){
 
 }
 
+//search ajax load checkbox
+public function searchbrand(Request $request)
+{
+  // dd($request);
+    // $categories = \Input::get('id_thuonghieu');
+    $categories = $request->input('id_thuonghieu');
+    $id_loaisp = $request->input('id_loaisp');
+    $thuonghieu = SanPham::join('nhacungcap','nhacungcap.id_thuonghieu','sanpham.id_thuonghieu')
+    ->where('sanpham.id_thuonghieu', [$categories])
+    ->where('sanpham.id_loaisp',$id_loaisp)
+    ->get();
+    return view('FE.products.render_search', compact('thuonghieu'));
 
+  }
 
+// tìm sản phẩm theo giá 2 nút nhập
+public function search2gia(Request $request){
+  
+  $price_from = $request->input('price-from');
+  $price_to = $request->input('price-to');
+  $id_loaisp = $request->input('id_loaisp');
 
+  $sanphamprice = SanPham::where('price_sp','>=',$price_from)
+  ->where('price_sp','<=',$price_to)
+  ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
+  ->where('sanpham.id_loaisp',$id_loaisp)
+  ->get();     
+  // dd($sanphamprice);
+  // return view('FE.products.render_searchbutton', compact('sanphamprice'));
+ return response([
+   'html' => view('FE.products.render_searchbutton', compact('sanphamprice'))->render()
+  ]);
+}
 
 }

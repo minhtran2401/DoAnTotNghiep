@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta property="fb:app_id" content="800406244111382"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}"> <!--!-->
     @yield('meta')
     <title>@yield('title','GreenFresh')</title>
     <link href="https://fonts.googleapis.com/css?family=KoHo:400,600,700&amp;display=swap" rel="stylesheet">
@@ -29,7 +30,25 @@
 
 
 
-
+<style>
+  #loadingg
+{
+	text-align:center; 
+	background: url("{{asset('FE')}}/assets/images/loader.gif") no-repeat center; 
+  animation-duration: 1s;
+  animation-delay: unset;
+  animation-name: loadsort;
+	height: 150px;
+}
+@keyframes loadsort{
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+  }
+}
+</style>
 
 
 </head>
@@ -199,11 +218,14 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
      })
  
      function thongbao() {
-       Swal.fire({
+       
+  Swal.fire({
  icon: 'error',
- title: 'Bị chặn...',
- text: 'Chức năng chỉ dành cho nhà phát triển',
- footer: '<a href = {{route('contact')}}>Có thắc mắc? Hãy liên hệ để được hỗ trợ !</a>'
+ title: 'Bị chặn',
+ text: 'Hãy mua hàng như một vị khách bình thường , Cảm ơn ♥',
+ footer: '<a href = {{route('contact')}}>Có thắc mắc? Hãy liên hệ để được hỗ trợ !</a>',
+ confirmButtonText:
+    '<i class="fa fa-thumbs-up"></i> Đồng Ý',
  })
  
        }
@@ -248,6 +270,16 @@ logged_out_greeting="Xin chào ! Bạn cần trợ giúp gì ?">
        return false;  //Prevent from ctrl+shift+u
    }
    else if(event.ctrlKey && event.shiftKey && event.keyCode==74 )
+   {        thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+j
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==83 )
+   {        thongbao();
+ 
+       return false;  //Prevent from ctrl+shift+j
+   }
+   else if(event.ctrlKey && event.shiftKey && event.keyCode==70 )
    {        thongbao();
  
        return false;  //Prevent from ctrl+shift+j

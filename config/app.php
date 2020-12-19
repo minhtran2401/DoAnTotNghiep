@@ -240,6 +240,8 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'provides' => App\Providers\ComposerServiceProvider::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        // 'Input' => Illuminate\Support\Facades\Input::class,
+
 
 
 

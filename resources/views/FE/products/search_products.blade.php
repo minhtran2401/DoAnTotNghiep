@@ -32,7 +32,7 @@
                     </div>
                     <div class="row">
                         <ul class="products-list">
-                            @forelse ($kq as $val)
+                            @forelse ($ketquatim as $val)
                                 <li class="product-item col-lg-4 col-md-4 col-sm-4 col-xs-6">
                                 <div class="contain-product layout-default">
                                     <div class="product-thumb">
@@ -78,7 +78,7 @@
                     <!-- Paginate of new products-->
                     <div class="biolife-panigations-block">
                         <ul class="panigation-contain">
-                            <li>{!! $kq->links() !!}</li>
+                            <li>{!! $ketquatim->links() !!}</li>
                             
                         </ul>
                     </div>

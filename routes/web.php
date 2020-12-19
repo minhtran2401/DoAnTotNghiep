@@ -56,6 +56,16 @@ Route::get('/search-sp', [App\Http\Controllers\PageController::class, 'searchsub
 // Route::get('/ket-qua-sap-xep', [App\Http\Controllers\SanPhamController::class, 'indexSorting'])->name('indexSorting');
 // Route::get('/ket-qua-tim-kiem', [App\Http\Controllers\SanPhamController::class, 'indexFiltering'])->name('indexFiltering');
 
+//ajax lọc nhóm sp
+Route::post('/loc-thuong-hieu', [App\Http\Controllers\PageController::class, 'searchbrand'])->name('locthuonghieu');
+
+// ajax lọc sản phẩm theo giá ( 2 button )
+// Route::get('/paginate-san-pham', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gias');
+Route::post('/loc-theo-gia/', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gia');
+// Route::get('/loc-theo-gia/*', [App\Http\Controllers\PageController::class, 'search2gia'])->name('search2gia');
+
+
+
 
 
 Route::get('/lien-he', [App\Http\Controllers\PageController::class, 'contact'])->name('contact');

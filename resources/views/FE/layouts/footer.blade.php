@@ -34,34 +34,41 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
                         <section class="footer-item">
-                            <h3 class="section-title">Liên kết thường dùng</h3>
+                            <h3 class="section-title">LIÊN KẾT THƯỜNG DÙNG</h3>
                             <div class="row">
                                 <div class="col-lg-6 col-sm-6 col-xs-6">
                                     <div class="wrap-custom-menu vertical-menu-2">
                                         <ul class="menu">
-                                            <li><a href="#">Trang chủ</a></li>
-                                            <li><a href="#">Giới thiệu</a></li>
-                                            <li><a href="#">Liên hệ</a></li>
-                                            <li><a href="#">Tuyển dụng</a></li>
+                                            <li><a href="{{route('index')}}">Trang chủ</a></li>
+                                            <li><a href="{{route('allprod')}}">Cửa Hàng</a></li>
+                                            <li><a href="{{route('allblog')}}">Bài Viết</a></li>
+                                            <li><a href="{{route('contact')}}">Liên hệ</a></li>
+                                            <li><a href="{{route('tuyendung','1')}}">Tuyển dụng</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-sm-6 col-xs-6">
                                     <div class="wrap-custom-menu vertical-menu-2">
                                         <ul class="menu">
-                                            <li><a href="#">Sản phẩm nhập khẩu</a></li>
-                                            <li><a href="#">Sản phẩm trong nước</a></li>
-                                            <li><a href="#">Sản phẩm sấy khô</a></li>
-                                            <li><a href="#">Sản phẩm tươi</a></li>
+                                            @php
+                                            $nhomsp = App\NhomSanPham::orderby('id_nhomsp','desc')->get();
+                                            @endphp
+                                            @foreach ($nhomsp as $n)
+                                            <li><a href="#">{{$n->name_nhomsp}}</a></li>
+
+                                            @endforeach
+                                            
                                         </ul>
+                                        
                                     </div>
+                                    
                                 </div>
                             </div>
                         </section>
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-6 md-margin-top-5px sm-margin-top-50px xs-margin-top-40px">
                         <section class="footer-item">
-                            <h3 class="section-title">Thông tin liên hệ</h3>
+                            <h3 class="section-title">THÔNG TIN LIÊN HỆ</h3>
                             <div class="contact-info-block footer-layout xs-padding-top-10px">
                                 <ul class="contact-lines">
                                     <li>
@@ -107,7 +114,7 @@
                         <div class="separator sm-margin-top-62px xs-margin-top-40px"></div>
                     </div>
                     <div style="margin-bottom: 10px" class="col-lg-12 col-sm-12 col-xs-12 ">
-                       <div class="copy-right-text text-center"><p><a href="">WD14308 - GreenFresh made with ♥</a></p></div>
+                       <div class="copy-right-text text-center" ><p><a style="color: rgb(137, 209, 4)" href="">WD14308 - GreenFresh made with ♥</a></p></div>
                     </div>
                   
                 </div>

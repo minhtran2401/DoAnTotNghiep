@@ -16,11 +16,11 @@
                     @foreach(Session::get('Cart')->products as $item)
                         <tr class="cart_item">
                             <td class="product-thumbnail" data-title="Product Name">
-                                <a class="prd-thumb" href="#">
+                                <a class="prd-thumb" href="{{route('singleproduct',$item['productInfo']->slug_sp)}}">
                                     <figure><img width="113" height="113" src="{{ asset('hinhsp') }}/{{$item['productInfo']->img_sp}}"
                                             alt="shipping cart"></figure>
                                 </a>
-                                <a class="prd-name" href="#">{{$item['productInfo']->name_sp}}</a>
+                                <a class="prd-name" href="{{route('singleproduct',$item['productInfo']->slug_sp)}}">{{$item['productInfo']->name_sp}}</a>
                                 <div class="action">
                                     <a href="javascript:0" onclick="SaveListItemCart({{$item['productInfo']->id_sanpham}});" class="edit"><i class="fa fa-pencil" aria-hidden="true"> </i> Lưu</a>
                                     <a href="javascript:0" onclick="DeleteItemListCart({{$item['productInfo']->id_sanpham}});" class="remove"><i class="fa fa-trash-o" aria-hidden="true"></i> Xóa</a>

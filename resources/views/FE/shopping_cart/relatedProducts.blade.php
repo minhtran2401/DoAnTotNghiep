@@ -34,12 +34,16 @@
                         @endif
                     </div>
                     <div class="slide-down-box">
-                        <p class="message">All products are carefully selected to ensure food safety.</p>
+                        <p class="message">Tất cả sản phẩm của GreenFresh đều qua kiểm duyệt</p>
                         <div class="buttons">
-                            <a href="#" class="btn wishlist-btn"><i class="fa fa-heart" aria-hidden="true"></i></a>
-                            <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down"
-                                    aria-hidden="true"></i>add to cart</a>
-                            <a href="#" class="btn compare-btn"><i class="fa fa-random" aria-hidden="true"></i></a>
+                            @if($item->khohang_soluong < 5)
+                            <a href="javascript:0" disabled class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Tạm Hết Hàng</a>
+                            @else
+                            <a href="javascript:0" onclick="AddCart({{$pr->id_sanpham}})" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down" aria-hidden="true"></i>Thêm Vào Giỏ</a>
+                            @endif
+                            {{-- <a href="#" class="btn add-to-cart-btn"><i class="fa fa-cart-arrow-down"
+                                    aria-hidden="true"></i>Thêm Vào Giỏ</a> --}}
+                         
                         </div>
                     </div>
                 </div>
