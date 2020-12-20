@@ -497,21 +497,15 @@ public function searchbrand(Request $request)
 
   public function profilter(Request $request)
 {
-    // $categories = \Input::get('id_thuonghieu');
-    $id_thuonghieu = $request->input('id_thuonghieu');
-    $id_nhomsp = $request->input('id_nhomsp');
-    $id_loaisp = $request->input('id_loaisp');
-    $lon = $request->input('maximum_price');
-    $be = $request->input('minimum_price');
-    
 
-    $filter = SanPham::where('id_thuonghieu', $id_thuonghieu)
-    ->Orwhere('id_loaisp',$id_loaisp)
-    ->Orwhere('id_nhomsp',$id_nhomsp)
-    // ->Orwhere('price_sp','>=',$be)
-    // ->Orwhere('price_sp','<=',$lon)
-    ->orderby('id_sanpham','desc')
+    $filter = SanPham::query()
+    ->price($request)
+    ->brand($request)
+    ->group($request)
+    ->type($request)
     ->get();
+    // return $filter->get();
+
     return view('FE.products.render_filter', compact('filter'));
 
   }
@@ -524,8 +518,8 @@ public function search2gia(Request $request){
   $id_loaisp = $request->input('id_loaisp');
 
 
-  $sanphamprice = SanPham::where('price_sp','>=',$price_from)
-  ->where('price_sp','<=',$price_to)
+  $sanphamprice = SanPham::whereBetween('price_sp', [$price_from, $price_to])
+
   ->join('loaisp','loaisp.id_loaisp','sanpham.id_loaisp')
   ->where('sanpham.id_loaisp',$id_loaisp)
   ->get();     

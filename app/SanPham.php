@@ -45,4 +45,35 @@ class SanPham extends Model {
         return $this->hasOne('App\KhoHang','sku','sku');
     }
 
+    // filter 
+    public function scopebrand($query, $request)
+{
+    if ($request->has('brand[]')) {
+        $query->where('id_thuonghieu', $request->brand[]);
+    }
+    return $query;
+}
+public function scopegroup($query, $request)
+{
+    if ($request->has('group[]')) {
+        $query->where('id_nhomsp', $request->group[]);
+    }
+    return $query;
+}
+public function scopetype($query, $request)
+{
+    if ($request->has('type[]')) {
+        $query->where('id_loaisp', $request->type[]);
+    }
+    return $query;
+}
+public function scopeprice($query, $request)
+{
+    if ($request->has('minimum_price') && $request->has('maximum_price') ) {
+        $query->whereBetween('price_sp', [$request->minimum_price, $request->maximum_price]);
+
+    }
+    return $query;
+}
+
 }

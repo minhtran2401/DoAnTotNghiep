@@ -95,9 +95,10 @@
                             <li>
                                 @if(isset($_GET['sort']) && !empty($_GET['sort'])){
                                     {{ $productpage->appends(['sort' => $_GET['sort']])->links()  }}
-                    
-                                @else
+                               
+                                @elseif($productpage)
                                     {!! $productpage->links() !!}}
+                                @else
                                 @endif
                                 </li>
                         </ul>
@@ -119,9 +120,9 @@
                         <h4 class="wgt-title">Giá</h4>
                         <div class="wgt-content">
                            
-                                <input class="input-number" type="hidden" name = "minprice" id="hidden_minimum_price" value="0" />
-                                <input class="input-number" type="hidden" name = "maxprice" id="hidden_maximum_price" value="500000" />
-                                <p  id="price_show">Từ 1000đ - 500000đ</p>
+                                <input class="input-number" type="hidden" name = "minprice" id="hidden_minimum_price" value="15000" />
+                                <input class="input-number" type="hidden" name = "maxprice" id="hidden_maximum_price" value="50000" />
+                                <p  id="price_show">Từ 15000đ - 50000đ</p>
                                 
                                 <div id="price_range"></div>
                         
@@ -269,9 +270,9 @@
            $('#price_range').slider({
         range:true,
         min:1000,
-        max:500000,
-        values:[1000, 500000],
-        step:500,
+        max:400000,
+        values:[15000, 50000],
+        step:5000,
         stop:function(event, ui)
         {
             $('#price_show').html(ui.values[0] + 'đ ' + ' - ' + ui.values[1] + 'đ');
