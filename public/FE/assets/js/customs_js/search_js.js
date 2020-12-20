@@ -16,7 +16,7 @@ jQuery(document).ready(function($) {
         queryTokenizer: Bloodhound.tokenizers.whitespace
     });
 
-    $("#searchsp").typeahead({
+    $(".search-input").typeahead({
         hint: true,
         highlight: true,
         minLength: 1
