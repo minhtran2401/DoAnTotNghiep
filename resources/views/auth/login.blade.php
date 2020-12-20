@@ -61,7 +61,7 @@
                         <div class="form-row wrap-btn" >
                             {{ __('Hoặc đăng nhập với') }}
                         <a href="{{route('re-fblogin','facebook')}}" class="btn btn-primary"><i class="fa fa-facebook"></i> Facebook</a>
-                        <a href="javascript:0" class="disabled btn btn-danger"><i class="fa fa-google"></i> Google</a>
+                      
 
                         </div>
                     </div>
