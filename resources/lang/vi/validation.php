@@ -13,9 +13,9 @@ return [
     |
     */
 
-    'accepted' => 'The :attribute must be accepted.',
-    'active_url' => 'The :attribute is not a valid URL.',
-    'after' => 'The :attribute must be a date after :date.',
+    'accepted' => ':attribute phải được chấp nhận.',
+    'active_url' => ':attribute không phải là liên kết.',
+    'after' => ':attribute must be a date after :date.',
     'after_or_equal' => 'The :attribute must be a date after or equal to :date.',
     'alpha' => 'The :attribute may only contain letters.',
     'alpha_dash' => 'The :attribute may only contain letters, numbers, dashes and underscores.',
@@ -29,9 +29,9 @@ return [
         'string' => 'The :attribute must be between :min and :max characters.',
         'array' => 'The :attribute must have between :min and :max items.',
     ],
-    'boolean' => 'The :attribute field must be true or false.',
+    'boolean' => ':attribute chỉ có đúng hoặc sai.',
     'confirmed' => 'The :attribute confirmation does not match.',
-    'date' => 'The :attribute is not a valid date.',
+    'date' => ':attribute không đúng định dạng ngày tháng.',
     'date_equals' => 'The :attribute must be a date equal to :date.',
     'date_format' => 'The :attribute does not match the format :format.',
     'different' => 'The :attribute and :other must be different.',
@@ -39,11 +39,11 @@ return [
     'digits_between' => 'The :attribute must be between :min and :max digits.',
     'dimensions' => 'The :attribute has invalid image dimensions.',
     'distinct' => 'The :attribute field has a duplicate value.',
-    'email' => 'Email phải đúng định dạng.',
+    'email' => ':attribute phải đúng định dạng.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'exists' => 'The selected :attribute is invalid.',
-    'file' => 'The :attribute must be a file.',
-    'filled' => 'The :attribute field must have a value.',
+    'file' => ':attribute phải là tệp tin.',
+    'filled' => ':attribute phải có giá trị.',
     'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',
         'file' => 'The :attribute must be greater than :value kilobytes.',
@@ -56,7 +56,7 @@ return [
         'string' => 'The :attribute must be greater than or equal :value characters.',
         'array' => 'The :attribute must have :value items or more.',
     ],
-    'image' => 'The :attribute must be an image.',
+    'image' => ':attribute phải là hình ảnh.',
     'in' => 'The selected :attribute is invalid.',
     'in_array' => 'The :attribute field does not exist in :other.',
     'integer' => 'The :attribute must be an integer.',
@@ -77,17 +77,17 @@ return [
         'array' => 'The :attribute must not have more than :value items.',
     ],
     'max' => [
-        'numeric' => 'The :attribute may not be greater than :max.',
-        'file' => 'The :attribute may not be greater than :max kilobytes.',
-        'string' => 'The :attribute may not be greater than :max characters.',
+        'numeric' => ':attribute không vượt quá :max.',
+        'file' => 'Dung lượng :attribute cao nhất là: :max Kb.',
+        'string' => ':attribute không quá :max kí tự.',
         'array' => 'The :attribute may not have more than :max items.',
     ],
     'mimes' => 'The :attribute must be a file of type: :values.',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'numeric' => 'The :attribute must be at least :min.',
-        'file' => 'The :attribute must be at least :min kilobytes.',
-        'string' => 'The :attribute must be at least :min characters.',
+        'file' => 'Dung lượng :attribute ít nhất là: :min Kb.',
+        'string' => ':attribute không được ít hơn :min kí tự.',
         'array' => 'The :attribute must have at least :min items.',
     ],
     'not_in' => 'The selected :attribute is invalid.',
@@ -95,7 +95,7 @@ return [
     'numeric' => 'The :attribute must be a number.',
     'password' => 'The password is incorrect.',
     'present' => 'The :attribute field must be present.',
-    'regex' => 'The :attribute không đúng định dạng.',
+    'regex' => ':attribute không đúng định dạng.',
     'required' => ':attribute không được để trống.',
     'required_if' => 'The :attribute field is required when :other is :value.',
     'required_unless' => 'The :attribute field is required unless :other is in :values.',
@@ -106,8 +106,8 @@ return [
     'same' => 'The :attribute and :other must match.',
     'size' => [
         'numeric' => 'The :attribute must be :size.',
-        'file' => 'The :attribute must be :size kilobytes.',
-        'string' => 'The :attribute must be :size characters.',
+        'file' => 'Dung lượng :attribute phải là: :size Kb.',
+        'string' => ':attribute phải nhập :size kí tự.',
         'array' => 'The :attribute must contain :size items.',
     ],
     'starts_with' => 'The :attribute must start with one of the following: :values.',
@@ -115,7 +115,7 @@ return [
     'timezone' => 'The :attribute must be a valid zone.',
     'unique' => ' :attribute đã được sử dụng trước đó.',
     'uploaded' => 'The :attribute failed to upload.',
-    'url' => 'The :attribute không đúng định dạng.',
+    'url' => ':attribute không đúng định dạng.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
     /*
@@ -132,7 +132,6 @@ return [
     'custom' => [
         'attribute-name' => [
             'rule-name' => 'custom-message',
-            'phone' => 'Số điện thoại',
             'unique' => 'đã được sử dụng',
         ],
     ],
@@ -148,6 +147,82 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        // user 
+        'phone' => 'Số điện thoại',
+        'name' => 'Tên',
+        'password' => 'Mật khẩu',
+        'email' => 'Địa chỉ email',
+        'address'=>'Địa chỉ',
+
+        // thông tin trang web
+        'sitename' => 'Tên trang web',
+        'address' => 'Địa chỉ',
+        'address2' => 'Địa chỉ',
+        'address3' => 'Địa chỉ',
+        'contactemail' => 'Địa chỉ email',
+        'contactphone' => 'Số điện thoại liên hệ',
+        'contactphone2' => 'Số điện thoại liên hệ',
+        'contactphone3' => 'Số điện thoại liên hệ',
+        'sitelogo' => 'Logo trang web',
+
+        // kho hàng
+        'khohang_name'=>'Tên kho hàng',
+        'khohang_soluong'=>'Số lượng',
+        'khohang_donvi'=>'Đơn vị',
+        'khohang_ngaynhap'=>'Ngày nhập',
+        'khohang_hsd'=>'Hạn sử dụng',
+
+        // loại blog
+        'name_loaiblog'=>'Tên loại bài viết',
+
+        // liên kết mạng 
+        'snslink'=>'Liên kết',
+        'snsicon'=>'Biểu tượng',
+
+        // tuyển dụng
+        'name_tuyendung'=>'Tên tuyển dụng',
+        'noidung_tuyendung'=>'Nội dung tuyển dụng',
+
+        // blog
+        'id_loaiblog'=>'Loại bài viết',
+        'tomtat_blog'=>'Tóm tắt bài viết',
+        'name_blog'=>'Tiêu đề bài viết',
+        'img_blog'=>'Hình ảnh',
+        'noidung_blog'=>'Nội dung bài viết',
+        'tag_blog'=>'Thẻ',
+
+        // Thương hiệu
+        'name_thuonghieu' => 'Tên thương hiệu',
+        'sdt_thuonghieu' => 'Số điện thoại',
+        'link_thuonghieu' => 'Liên kết',
+        'img_thuonghieu' => 'Hình ảnh',
+
+        // sản phẩm
+        'name_sp'=>'Tên sản phẩm',
+        'id_nhomsp'=>'Nhóm sản phẩm',
+        'id_loaisp'=>'Loại sản phẩm',
+        'price_sp'=>'Giá sản phẩm',
+        'id_thuonghieu'=>'Thương hiệu sản phẩm',
+        'motangan_sp'=>'Mô tả ngắn sản phẩm',
+        'motadai_sp'=>'Mô tả dài sản phẩm',
+        'img_sp'=>'Hình ảnh sản phẩm',
+
+        // Nhóm sản phẩm
+        'name_nhomsp'=>'Tên nhóm sản phẩm',
+        'icon_nhomsp'=>'Biểu tượng',
+
+        // loại sản phẩm
+        'name_loaisp' => 'Tên loại sản phẩm',
+        'icon_loaisp'=>'Biểu tượng',
+
+        // đơn vị
+        'name_donvi'=>'Tên đơn vị',
+
+        // mã giảm giá
+        'counpon_code'=>'Mã giảm giá',
+
+
+    ],
 
 ];

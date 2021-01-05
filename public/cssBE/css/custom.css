@@ -206,7 +206,7 @@ max-width:100%;
 
 #thongkesoluongsanpham {
     width: 100%;
-    height: 1000px;
+    height: 450px;
     max-width:100%;
 
   }
@@ -220,15 +220,6 @@ max-width:100%;
     width: 100%;
     height: 450px;
   }
-  #sanphambanchay {
-    width: 100%;
-    height: 500px;
-  }
-  #khachhangtiemnang {
-    width: 100%;
-    height: 500px;
-  }
-
 .avatar{
     background: none !important;
 }

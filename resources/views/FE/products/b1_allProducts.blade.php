@@ -95,9 +95,10 @@
                             <li>
                                 @if(isset($_GET['sort']) && !empty($_GET['sort'])){
                                     {{ $productpage->appends(['sort' => $_GET['sort']])->links()  }}
-                    
-                                @else
+                               
+                                @elseif($productpage)
                                     {!! $productpage->links() !!}}
+                                @else
                                 @endif
                                 </li>
                         </ul>
@@ -118,12 +119,14 @@
                     <div class="widget price-filter biolife-filter">
                         <h4 class="wgt-title">Giá</h4>
                         <div class="wgt-content">
-                            <div class="frm-contain">
-                                <input type="hidden" id="hidden_minimum_price" value="0" />
-                                <input type="hidden" id="hidden_maximum_price" value="65000" />
-                                <p id="price_show">1000 - 65000</p>
+                           
+                                <input class="input-number" type="hidden" name = "minprice" id="hidden_minimum_price" value="15000" />
+                                <input class="input-number" type="hidden" name = "maxprice" id="hidden_maximum_price" value="50000" />
+                                <p  id="price_show">Từ 15000đ - 50000đ</p>
+                                
                                 <div id="price_range"></div>
-                            </div>
+                        
+                               
                          
                         </div>
                     </div>
@@ -214,12 +217,18 @@
       }
     });
      $(document).ready(function () {
+        
+
     var id_thuonghieu = [];
     var id_loaisp = [];
     var id_nhomsp = [];
+
     // Listen for 'change' event, so this triggers when the user clicks on the checkboxes labels
-    $('input[name="brand[]"],input[name="type[]"],input[name="group[]"]').on('change', function (e) {
-        e.preventDefault();
+    $('input[name="brand[]"],input[name="type[]"],input[name="group[]"],input[name="maxprice"],input[name="minprice"]').on('change', function (e) {
+         e.preventDefault();
+      
+           
+     
         id_thuonghieu = []; // reset 
         $('input[name="brand[]"]:checked').each(function()
         {
@@ -235,13 +244,42 @@
         {
             id_nhomsp.push($(this).val());
         });
-        $.post('{{route('profilter')}}', {id_thuonghieu: id_thuonghieu,id_loaisp: id_loaisp, id_nhomsp: id_nhomsp ,_token: '{{csrf_token()}}'}, function(res){
+  
+        var minimum_price = $('#hidden_minimum_price').val();
+        var maximum_price = $('#hidden_maximum_price').val();
+        $('input[name="minprice"]').change(function()
+        {
+            minimum_price.push($(this).val());
+        });
+       
+        $('input[name="maxprice"]').change(function()
+        {
+            maximum_price.push($(this).val());
+        });
+        
+        $.post('{{route('profilter')}}', { maximum_price: maximum_price, minimum_price: minimum_price ,id_thuonghieu: id_thuonghieu,id_loaisp: id_loaisp, id_nhomsp: id_nhomsp ,_token: '{{csrf_token()}}'}, function(res){
             
             $('#filter_dataz').html(res);
         });            
     });
-    
+
     });
     </script>
       <script src="{{asset('FE')}}/assets/js/customs_js/sort_js.js"></script>
+      <script>
+           $('#price_range').slider({
+        range:true,
+        min:1000,
+        max:400000,
+        values:[15000, 50000],
+        step:5000,
+        stop:function(event, ui)
+        {
+            $('#price_show').html(ui.values[0] + 'đ ' + ' - ' + ui.values[1] + 'đ');
+            $('#hidden_minimum_price').val(ui.values[0]);
+            $('#hidden_maximum_price').val(ui.values[1]);
+
+        }
+    });
+      </script>
 @endsection

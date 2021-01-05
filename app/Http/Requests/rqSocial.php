@@ -26,24 +26,23 @@ class rqSocial extends FormRequest
         return [
             'snslink'=>'required|max:255',
             'snsicon'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:1024',
-
         ];
     }
 
-    public function messages() {
-        return [    
-             'snslink.required' => ':attribute không được bỏ trống',
-             'snslink.max' => ':attribute không quá 255 kí tự',
-             'snsicon.required' => 'Hình không được bỏ trống',
-             'snsicon.image' => 'Đây không phải là hình ảnh',
-             'snsicon.mimes' => 'Không đúng định dạng ảnh',
-             'snsicon.max' => 'Hình không quá 1024 kí tự',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'snslink.required' => ':attribute không được bỏ trống',
+    //          'snslink.max' => ':attribute không quá 255 kí tự',
+    //          'snsicon.required' => 'Hình không được bỏ trống',
+    //          'snsicon.image' => 'Đây không phải là hình ảnh',
+    //          'snsicon.mimes' => 'Không đúng định dạng ảnh',
+    //          'snsicon.max' => 'Hình không quá 1024 kí tự',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'snslink' => 'Liên kết',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'snslink' => 'Liên kết',
+    //    ];
+    //  }
 }

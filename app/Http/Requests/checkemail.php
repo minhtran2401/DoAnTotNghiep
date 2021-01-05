@@ -33,20 +33,20 @@ class checkemail extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-            'email.email' => 'Email không đúng định dạng, hãy nhập lại !',
-             'email.unique' => 'Email này đã được sử dụng !',
-             'email.required' => 'Chưa nhập email !',
-            //  'phone.regex' => 'Số điện thoại không đúng định dạng !',
-            //  'name.regex' =>'Tên quá dài'
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //         'email.email' => 'Email không đúng định dạng, hãy nhập lại !',
+    //          'email.unique' => 'Email này đã được sử dụng !',
+    //          'email.required' => 'Chưa nhập email !',
+    //         //  'phone.regex' => 'Số điện thoại không đúng định dạng !',
+    //         //  'name.regex' =>'Tên quá dài'
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'email' => 'Email',
+    //   public function attributes(){
+    //     return [
+    //        'email' => 'Email',
           
-       ];
-     }
+    //    ];
+    //  }
 }

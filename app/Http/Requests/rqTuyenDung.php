@@ -29,18 +29,18 @@ class rqTuyenDung extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-            'name_tuyendung.required'=>':attribute không được để trống',
-            'name_tuyendung.max'=>':attribute không quá 90 kí tự',
-            'noidung_tuyendung.required'=>':attribute không được để trống',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //         'name_tuyendung.required'=>':attribute không được để trống',
+    //         'name_tuyendung.max'=>':attribute không quá 90 kí tự',
+    //         'noidung_tuyendung.required'=>':attribute không được để trống',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'name_tuyendung'=>'Tên tuyển dụng',
-            'noidung_tuyendung'=>'Nội dung tuyển dụng',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'name_tuyendung'=>'Tên tuyển dụng',
+    //         'noidung_tuyendung'=>'Nội dung tuyển dụng',
+    //    ];
+    //  }
 }

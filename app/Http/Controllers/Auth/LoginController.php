@@ -63,10 +63,10 @@ class LoginController extends Controller
 }
 public function loginadmin(Request $request){
     $this->validate($request, [
-    'email' => 'required|email',
+    'email' => 'required|email|',
     'password' => 'required',
     ]);
- 
+    
         if(\Auth::attempt([
             'email' => $request->email,
             'password' => $request->password]))
@@ -80,4 +80,7 @@ public function loginadmin(Request $request){
         toast('Tài khoản hoặc mật khẩu không chính xác','error');
     }
 }
+
+
+
 }

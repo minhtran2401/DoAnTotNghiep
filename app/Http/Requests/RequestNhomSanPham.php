@@ -30,20 +30,20 @@ class RequestNhomSanPham extends FormRequest
         ];
     }
 
-    public function messages() {
-        return [    
-             'name_nhomsp.required' => ':attribute không được bỏ trống',
-             'name_nhomsp.max' => ':attribute không quá 60 kí tự',
-             'icon_nhomsp.required' => 'Hình không được bỏ trống',
-             'icon_nhomsp.image' => 'Đây không phải là hình ảnh',
-             'icon_nhomsp.mimes' => 'Không đúng định dạng ảnh',
-             'icon_nhomsp.max' => 'Hình không quá 2048 kí tự',
-        ];
-      }
+    // public function messages() {
+    //     return [    
+    //          'name_nhomsp.required' => ':attribute không được bỏ trống',
+    //          'name_nhomsp.max' => ':attribute không quá 60 kí tự',
+    //          'icon_nhomsp.required' => 'Hình không được bỏ trống',
+    //          'icon_nhomsp.image' => 'Đây không phải là hình ảnh',
+    //          'icon_nhomsp.mimes' => 'Không đúng định dạng ảnh',
+    //          'icon_nhomsp.max' => 'Hình không quá 2048 kí tự',
+    //     ];
+    //   }
 
-      public function attributes(){
-        return [
-           'name_nhomsp' => 'Tên nhón sản phẩm',
-       ];
-     }
+    //   public function attributes(){
+    //     return [
+    //        'name_nhomsp' => 'Tên nhón sản phẩm',
+    //    ];
+    //  }
 }

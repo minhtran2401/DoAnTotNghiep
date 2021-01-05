@@ -62,7 +62,7 @@ $(document).ready(function () {
          chart.exporting.menu = new am4core.ExportMenu();
         }); // end am4core.ready()
   
-    // thống kê đơn hàng theo ngày //////////////////////////////////
+    // thống kê đơn hàng theo ngày
 
     am4core.ready(function() {
 
@@ -270,102 +270,9 @@ $(document).ready(function () {
        ok.y =50;
         }); // end am4core.ready()
         
-        
-        ///////////////////////////////////////////////
+   
+  
 
-        am4core.ready(function() {
-
-            // Themes begin
-            am4core.useTheme(am4themes_animated);
-            // Themes end
-            
-            // Create chart instance
-            var chart = am4core.create("sanphambanchay", am4charts.XYChart);
-            chart.scrollbarX = new am4core.Scrollbar();
-            
-            $.get(API_URL + '/san-pham-ban-chay').then(function (response) {
-                // Add data
-                chart.data = response;
-            // Create axes
-            var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
-            categoryAxis.dataFields.category = "name";
-            categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.minGridDistance = 30;
-            categoryAxis.renderer.labels.template.horizontalCenter = "right";
-            categoryAxis.renderer.labels.template.verticalCenter = "middle";
-            categoryAxis.renderer.labels.template.rotation = 270;
-            categoryAxis.tooltip.disabled = true;
-            categoryAxis.renderer.minHeight = 110;
-            
-            var valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
-            valueAxis.renderer.minWidth = 50;
-            
-            // Create series
-            var series = chart.series.push(new am4charts.ColumnSeries());
-            series.sequencedInterpolation = true;
-            series.dataFields.valueY = "value";
-            series.dataFields.categoryX = "name";
-            series.tooltipText = "[{categoryX}: bold]{valueY}[/]";
-            series.columns.template.strokeWidth = 0;
-            
-            series.tooltip.pointerOrientation = "vertical";
-            
-            series.columns.template.column.cornerRadiusTopLeft = 10;
-            series.columns.template.column.cornerRadiusTopRight = 10;
-            series.columns.template.column.fillOpacity = 0.8;
-            
-            // on hover, make corner radiuses bigger
-            var hoverState = series.columns.template.column.states.create("hover");
-            hoverState.properties.cornerRadiusTopLeft = 0;
-            hoverState.properties.cornerRadiusTopRight = 0;
-            hoverState.properties.fillOpacity = 1;
-            
-            series.columns.template.adapter.add("fill", function(fill, target) {
-              return chart.colors.getIndex(target.dataItem.index);
-            });
-            
-            // Cursor
-            chart.cursor = new am4charts.XYCursor();
-            chart.exporting.menu = new am4core.ExportMenu();
-            }); // end am4core.ready()
-        });
-
-
-        //////////////////////////// Khách HÀng tiềm năng ////////////////////////////////////
-
-        am4core.ready(function() {
-
-            // Themes begin
-            am4core.useTheme(am4themes_animated);
-            // Themes end
-            
-            var iconPath = "M53.5,476c0,14,6.833,21,20.5,21s20.5-7,20.5-21V287h21v189c0,14,6.834,21,20.5,21 c13.667,0,20.5-7,20.5-21V154h10v116c0,7.334,2.5,12.667,7.5,16s10.167,3.333,15.5,0s8-8.667,8-16V145c0-13.334-4.5-23.667-13.5-31 s-21.5-11-37.5-11h-82c-15.333,0-27.833,3.333-37.5,10s-14.5,17-14.5,31v133c0,6,2.667,10.333,8,13s10.5,2.667,15.5,0s7.5-7,7.5-13 V154h10V476 M61.5,42.5c0,11.667,4.167,21.667,12.5,30S92.333,85,104,85s21.667-4.167,30-12.5S146.5,54,146.5,42 c0-11.335-4.167-21.168-12.5-29.5C125.667,4.167,115.667,0,104,0S82.333,4.167,74,12.5S61.5,30.833,61.5,42.5z"
-            
-            
-            
-            var chart = am4core.create("khachhangtiemnang", am4charts.SlicedChart);
-            chart.hiddenState.properties.opacity = 0; // this makes initial fade in effect
-            
-            $.get(API_URL + '/khach-hang-tiem-nang').then(function (response) {
-                // Add data
-                chart.data = response;
-            
-            var series = chart.series.push(new am4charts.PictorialStackedSeries());
-            series.dataFields.value = "value";
-            series.dataFields.category = "name";
-            series.alignLabels = true;
-            
-            series.maskSprite.path = iconPath;
-            series.ticks.template.locationX = 1;
-            series.ticks.template.locationY = 0.5;
-            
-            series.labelsContainer.width = 200;
-            
-            chart.legend = new am4charts.Legend();
-            chart.legend.position = "left";
-            chart.legend.valign = "bottom";
-            chart.exporting.menu = new am4core.ExportMenu();
-            }); // end am4core.ready()
-        });
+      
 
 });
