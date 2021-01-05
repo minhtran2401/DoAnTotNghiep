@@ -11,11 +11,11 @@
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400i,700i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu&amp;display=swap" rel="stylesheet">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('FE')}}/assets//images/favicon.png" />
-    <link rel="stylesheet" href="{{asset('FE')}}/assets//css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{asset('FE')}}/assets//css/animate.min.css">
-    <link rel="stylesheet" href="{{asset('FE')}}/assets//css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{asset('FE')}}/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{asset('FE')}}/assets/css/animate.min.css">
+    <link rel="stylesheet" href="{{asset('FE')}}/assets/css/font-awesome.min.css">
 
-    <link rel="stylesheet" href="{{asset('FE')}}/assets//css/style.css">
+    <link rel="stylesheet" href="{{asset('FE')}}/assets/css/style.css">
     <link rel="stylesheet" href="{{asset('FE')}}/assets/css/main-color03-green.css">
 
 </head>
